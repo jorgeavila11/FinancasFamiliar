@@ -1,0 +1,8 @@
+{
+  "name": "Family Finance",
+  "description": "Collaborative financial management for modern households. Track shared goals, scan receipts with AI, and manage family budgets together.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": []
+}

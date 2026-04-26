@@ -1,0 +1,104 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile information",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "displayName": { "type": "string" },
+        "email": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "householdId": { "type": "string" }
+      },
+      "required": ["uid", "email"]
+    },
+    "Household": {
+      "title": "Household",
+      "description": "Family or household group sharing finances",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "ownerId": { "type": "string" },
+        "members": { "type": "array", "items": { "type": "string" } },
+        "budget": { 
+          "type": "object",
+          "additionalProperties": { "type": "number" }
+        },
+        "monthlyIncome": { "type": "number", "description": "Total monthly income for the household" }
+      },
+      "required": ["name", "ownerId", "members"]
+    },
+    "Expense": {
+      "title": "Expense",
+      "description": "Individual transaction",
+      "type": "object",
+      "properties": {
+        "amount": { "type": "number" },
+        "category": { "type": "string" },
+        "merchant": { "type": "string" },
+        "date": { "type": "string", "format": "date-time" },
+        "userId": { "type": "string" },
+        "householdId": { "type": "string" },
+        "isRecurring": { "type": "boolean" },
+        "recurringId": { "type": "string" },
+        "sharedWith": { "type": "array", "items": { "type": "string" } },
+        "confidence": { "type": "number" }
+      },
+      "required": ["amount", "category", "merchant", "date", "userId", "householdId"]
+    },
+    "Goal": {
+      "title": "Goal",
+      "description": "Savings goal",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "targetAmount": { "type": "number" },
+        "savedAmount": { "type": "number" },
+        "category": { "type": "string" },
+        "householdId": { "type": "string" }
+      },
+      "required": ["title", "targetAmount", "savedAmount", "householdId"]
+    },
+    "Subscription": {
+      "title": "Subscription",
+      "description": "Recurring bills and subscriptions",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "amount": { "type": "number" },
+        "frequency": { "type": "string" },
+        "nextDueDate": { "type": "string", "format": "date-time" },
+        "householdId": { "type": "string" },
+        "status": { "type": "string", "enum": ["active", "pending", "action_needed"] }
+      },
+      "required": ["name", "amount", "frequency", "nextDueDate", "householdId"]
+    }
+  },
+  "firestore": {
+    "users": {
+      "schema": "User",
+      "description": "Profiles of the users"
+    },
+    "households": {
+      "schema": "Household",
+      "description": "Shared household groups"
+    },
+    "expenses": {
+      "schema": "Expense",
+      "description": "Transaction logs"
+    },
+    "goals": {
+      "schema": "Goal",
+      "description": "Financial goals"
+    },
+    "subscriptions": {
+      "schema": "Subscription",
+      "description": "Recurring bills"
+    },
+    "fixedExpenses": {
+      "schema": "FixedExpense",
+      "description": "Monthly fixed expenses (rent, bills, etc) for a household"
+    }
+  }
+}
