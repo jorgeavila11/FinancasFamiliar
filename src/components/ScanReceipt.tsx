@@ -3,7 +3,7 @@ import { Camera, X, Zap, CheckCircle, Image as ImageIcon, Flashlight, Save, Sett
 import { motion, AnimatePresence } from 'motion/react';
 import { formatCurrency, cn } from '../lib/utils';
 import { db, auth } from '../lib/firebase';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { useHousehold } from '../context/HouseholdContext';
 import { handleFirestoreError, OperationType } from '../lib/firestoreErrorHandler';
 import { extractReceiptData, ExtractedReceiptData } from '../services/geminiService';
@@ -87,7 +87,8 @@ const ScanReceipt: React.FC<ScanReceiptProps> = ({ onComplete }) => {
         date: extractedData.date ? new Date(extractedData.date).toISOString() : new Date().toISOString(),
         userId: auth.currentUser.uid,
         householdId: household.id,
-        confidence: 0.95
+        confidence: 0.95,
+        createdAt: serverTimestamp()
       });
       onComplete();
     } catch (e) {

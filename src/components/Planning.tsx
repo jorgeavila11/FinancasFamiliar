@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHousehold } from '../context/HouseholdContext';
 import { db, auth } from '../lib/firebase';
-import { doc, updateDoc, collection, addDoc, query, where, onSnapshot, deleteDoc } from 'firebase/firestore';
+import { doc, updateDoc, collection, addDoc, query, where, onSnapshot, deleteDoc, serverTimestamp } from 'firebase/firestore';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { Home, Zap, Car, PiggyBank, ChevronLeft, ChevronRight, Save, Target, Banknote, Plus, Trash2, Calendar } from 'lucide-react';
 import { formatCurrency, cn } from '../lib/utils';
@@ -56,7 +56,7 @@ const Planning: React.FC = () => {
       });
       alert('Planejamento familiar atualizado!');
     } catch (e) {
-      handleFirestoreError(e, OperationType.UPDATE, 'households/planning');
+      handleFirestoreError(e, OperationType.UPDATE, `households/${household.id}`);
     } finally {
       setIsSaving(false);
     }
@@ -73,6 +73,7 @@ const Planning: React.FC = () => {
         category: newFixedCategory,
         dueDate: parseInt(newFixedDay),
         householdId: household.id,
+        createdAt: serverTimestamp(),
       });
       setNewFixedName('');
       setNewFixedAmount('');
@@ -518,7 +519,7 @@ const Planning: React.FC = () => {
                 </div>
                 <h3 className="text-lg font-black text-emerald-900 mb-2">Por que definir um orçamento?</h3>
                 <p className="text-sm text-emerald-700/80 leading-relaxed font-medium">
-                  Famílias que definem limites mensais economizam, em média, 15% a mais do que aquelas que apenas rastreiam gastos.
+                  Pessoas que definem limites mensais economizam, em média, 15% a mais do que aquelas que apenas rastreiam gastos.
                 </p>
                 <div className="mt-6 pt-6 border-t border-emerald-200/50 space-y-4">
                   <div>

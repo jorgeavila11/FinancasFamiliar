@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHousehold } from '../context/HouseholdContext';
 import { db, auth } from '../lib/firebase';
-import { collection, query, where, onSnapshot, orderBy, addDoc } from 'firebase/firestore';
+import { collection, query, where, onSnapshot, orderBy, addDoc, serverTimestamp } from 'firebase/firestore';
 import { Expense } from '../types';
 import { formatCurrency, cn } from '../lib/utils';
 import { motion, AnimatePresence } from 'motion/react';
@@ -59,6 +59,7 @@ const Expenses: React.FC = () => {
           householdId: household.id,
           installments: isInstallment ? numInstallments : undefined,
           installmentIndex: isInstallment ? i + 1 : undefined,
+          createdAt: serverTimestamp(),
         });
       }
 

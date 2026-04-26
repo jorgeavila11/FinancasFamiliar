@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHousehold } from '../context/HouseholdContext';
 import { db, auth } from '../lib/firebase';
-import { collection, query, where, onSnapshot, orderBy, limit, addDoc, setDoc, doc } from 'firebase/firestore';
+import { collection, query, where, onSnapshot, orderBy, limit, addDoc, setDoc, doc, serverTimestamp } from 'firebase/firestore';
 import { Expense, Goal, Subscription, FixedExpense } from '../types';
 import { formatCurrency, cn } from '../lib/utils';
 import { motion } from 'motion/react';
@@ -69,7 +69,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
     const unsubAllExpenses = onSnapshot(expensesAllQuery, (snap) => {
       setAllExpenses(snap.docs.map(doc => ({ id: doc.id, ...doc.data() } as Expense)));
     }, (err) => {
-      handleFirestoreError(err, OperationType.LIST, 'expenses_calc');
+      handleFirestoreError(err, OperationType.LIST, 'expenses');
     });
 
     const unsubGoals = onSnapshot(goalsQuery, (snap) => {
@@ -103,17 +103,17 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
     const handleCreateHousehold = async () => {
       if (!auth.currentUser) return;
       try {
-        const householdData = {
-          name: "Minha Família",
-          ownerId: auth.currentUser.uid,
-          members: [auth.currentUser.uid],
-          budget: DEFAULT_BUDGET
-        };
-        const docRef = await addDoc(collection(db, 'households'), householdData);
+      const docRef = await addDoc(collection(db, 'households'), {
+        name: 'Meu Orçamento',
+        ownerId: auth.currentUser.uid,
+        members: [auth.currentUser.uid],
+        budget: DEFAULT_BUDGET,
+        createdAt: serverTimestamp()
+      });
         // Update user profile with householdId
         await setDoc(doc(db, 'users', auth.currentUser.uid), { householdId: docRef.id }, { merge: true });
       } catch (e) {
-        handleFirestoreError(e, OperationType.WRITE, 'households/users');
+        handleFirestoreError(e, OperationType.WRITE, 'households');
       }
     };
 
@@ -156,8 +156,8 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
     <div className="space-y-8 pb-12">
       <section className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
         <div className="flex-1">
-          <h2 className="font-headline-md text-3xl font-black text-primary">Central da Família</h2>
-          <p className="font-body-md text-slate-500 font-medium mt-1">Gerencie suas metas compartilhadas e gastos coletivos.</p>
+          <h2 className="font-headline-md text-3xl font-black text-primary">Meu Dashboard</h2>
+          <p className="font-body-md text-slate-500 font-medium mt-1">Gerencie seu orçamento e gastos mensais.</p>
         </div>
         
         <div className="flex items-center gap-3 bg-white p-2 rounded-2xl shadow-sm border border-slate-100">
@@ -251,13 +251,6 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
               >
                 <Plus className="w-5 h-5" /> REVER ORÇAMENTO
               </button>
-              <div className="flex -space-x-3 ml-auto">
-                {[1, 2, 3].map(i => (
-                  <div key={i} className="w-10 h-10 rounded-full border-2 border-white bg-slate-200 overflow-hidden shadow-sm">
-                    <img src={`https://i.pravatar.cc/150?u=${i + 10}`} alt="member" className="w-full h-full object-cover" />
-                  </div>
-                ))}
-              </div>
             </div>
           </div>
           
@@ -283,7 +276,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
               </div>
               <span className="font-label-caps text-[10px] text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full font-bold">75%</span>
             </div>
-            <h3 className="font-headline-md text-xl text-on-surface mb-1">Novo Carro da Família</h3>
+            <h3 className="font-headline-md text-xl text-on-surface mb-1">Minha Meta</h3>
             <p className="font-body-md text-slate-400 text-sm mb-6">Meta: R$ 45.000</p>
           </div>
           <div>

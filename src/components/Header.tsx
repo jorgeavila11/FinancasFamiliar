@@ -8,9 +8,10 @@ import { motion, AnimatePresence } from 'motion/react';
 
 interface HeaderProps {
   profile: UserProfile | null;
+  onNavigate?: (tab: string) => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ profile }) => {
+const Header: React.FC<HeaderProps> = ({ profile, onNavigate }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -23,6 +24,11 @@ const Header: React.FC<HeaderProps> = ({ profile }) => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
+
+  const handleNavigate = (tab: string) => {
+    onNavigate?.(tab);
+    setIsMenuOpen(false);
+  };
 
   return (
     <header className="bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-100 dark:border-slate-800 sticky top-0 z-[100] h-16 flex items-center justify-between px-6 shadow-[0_1px_3px_0_rgba(0,0,0,0.02)]">
@@ -57,14 +63,11 @@ const Header: React.FC<HeaderProps> = ({ profile }) => {
               </div>
               
               <div className="space-y-1">
-                <button className="w-full flex items-center gap-3 px-4 py-2 text-sm font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-colors">
-                  <User className="w-4 h-4" /> Perfil
-                </button>
-                <button className="w-full flex items-center gap-3 px-4 py-2 text-sm font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-colors">
-                  <Settings className="w-4 h-4" /> Configurações
-                </button>
-                <button className="w-full flex items-center gap-3 px-4 py-2 text-sm font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-colors">
-                  <Shield className="w-4 h-4" /> Privacidade
+                <button 
+                  onClick={() => handleNavigate('settings')}
+                  className="w-full flex items-center gap-3 px-4 py-2 text-sm font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-colors"
+                >
+                  <User className="w-4 h-4" /> Meu Perfil & Configurações
                 </button>
               </div>
 
@@ -80,7 +83,7 @@ const Header: React.FC<HeaderProps> = ({ profile }) => {
           )}
         </AnimatePresence>
 
-        <h1 className="font-manrope font-extrabold text-[#0A192F] dark:text-white tracking-tight text-lg">Finanças Família</h1>
+        <h1 className="font-manrope font-extrabold text-[#0A192F] dark:text-white tracking-tight text-lg">Minhas Finanças</h1>
       </div>
       <div className="flex items-center gap-4">
         <button className="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors rounded-full relative">
