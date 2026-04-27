@@ -74,8 +74,10 @@ const Auth: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-start bg-[#f8fafb] px-6 py-12 overflow-y-auto">
       <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        key={isRegistering ? 'register' : 'login'}
+        initial={{ opacity: 0, x: isRegistering ? 20 : -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.3 }}
         className="max-w-[420px] w-full flex flex-col items-center"
       >
         {/* Header Section */}
@@ -100,12 +102,12 @@ const Auth: React.FC = () => {
 
         <div className="text-center mb-8">
           <h1 className="text-4xl font-black text-gray-900 mb-3 tracking-tight">
-            {isRegistering ? 'Criar Conta' : 'Bem-vindo'}
+            {isRegistering ? 'Criar Conta' : 'Acessar Conta'}
           </h1>
           <p className="text-gray-500 font-medium leading-relaxed max-w-[320px] mx-auto text-lg">
             {isRegistering 
-              ? 'Comece a organizar as finanças da sua família hoje mesmo.' 
-              : 'Gerencie o orçamento da sua família de forma inteligente.'}
+              ? 'Comece a organizar suas finanças pessoais hoje mesmo.' 
+              : 'Gerencie seu orçamento de forma inteligente e simples.'}
           </p>
         </div>
 
@@ -115,7 +117,8 @@ const Auth: React.FC = () => {
             {/* Social Buttons */}
             <button
               onClick={handleGoogleSignIn}
-              className="w-full h-[56px] flex items-center justify-center gap-4 bg-white border border-gray-100 text-gray-800 rounded-2xl font-bold hover:bg-gray-50 transition-all active:scale-[0.98] shadow-sm"
+              type="button"
+              className="w-full h-[56px] flex items-center justify-center gap-4 bg-white border border-gray-100 text-gray-800 rounded-2xl font-bold hover:bg-gray-50 transition-all active:scale-[0.98] shadow-sm text-sm"
             >
               <div className="w-6 h-6 flex items-center justify-center">
                 <img 
@@ -124,17 +127,18 @@ const Auth: React.FC = () => {
                   className="w-5 h-5"
                 />
               </div>
-              Google
+              Entrar com Google
             </button>
             
             <button
               onClick={handleFacebookSignIn}
-              className="w-full h-[56px] flex items-center justify-center gap-4 bg-white border border-gray-100 text-gray-800 rounded-2xl font-bold hover:bg-gray-50 transition-all active:scale-[0.98] shadow-sm"
+              type="button"
+              className="w-full h-[56px] flex items-center justify-center gap-4 bg-white border border-gray-100 text-gray-800 rounded-2xl font-bold hover:bg-gray-50 transition-all active:scale-[0.98] shadow-sm text-sm"
             >
               <div className="w-6 h-6 flex items-center justify-center">
-                <Facebook className="w-6 h-6 text-[#1877f2] fill-[#1877f2]" />
+                <Facebook className="w-5 h-5 text-[#1877f2] fill-[#1877f2]" />
               </div>
-              Facebook
+              Entrar com Facebook
             </button>
           </div>
 
@@ -152,6 +156,7 @@ const Auth: React.FC = () => {
           <AnimatePresence mode="wait">
             {error && (
               <motion.div
+                key="error-box"
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}
                 exit={{ opacity: 0, height: 0 }}
@@ -274,7 +279,7 @@ const Auth: React.FC = () => {
 
           {isRegistering && (
             <div className="mt-8 text-center text-[10px] text-gray-400 leading-relaxed max-w-[280px] mx-auto font-medium">
-              Ao se cadastrar, você concorda com nossos <button className="text-[#2d6a4f] font-bold">Termos de Uso</button> e <button className="text-[#2d6a4f] font-bold">Política de Privacidade</button>.
+              Ao se cadastrar, você concorda com nossos <button type="button" className="text-[#2d6a4f] font-bold">Termos de Uso</button> e <button type="button" className="text-[#2d6a4f] font-bold">Política de Privacidade</button>.
             </div>
           )}
         </div>
@@ -285,6 +290,7 @@ const Auth: React.FC = () => {
             {isRegistering ? 'Já tem uma conta?' : 'Não tem uma conta?'}
           </span>
           <button 
+            type="button"
             onClick={() => {
               setIsRegistering(!isRegistering);
               setError(null);

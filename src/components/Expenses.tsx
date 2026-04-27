@@ -50,17 +50,22 @@ const Expenses: React.FC = () => {
         const expenseDate = new Date(now);
         expenseDate.setMonth(now.getMonth() + i);
         
-        batch.push({
+        const data: any = {
           amount: isInstallment ? baseAmount / numInstallments : baseAmount,
           category,
           merchant: isInstallment ? `${merchant} (${i + 1}/${numInstallments})` : merchant,
           date: expenseDate.toISOString(),
           userId: auth.currentUser.uid,
           householdId: household.id,
-          installments: isInstallment ? numInstallments : undefined,
-          installmentIndex: isInstallment ? i + 1 : undefined,
           createdAt: serverTimestamp(),
-        });
+        };
+
+        if (isInstallment) {
+          data.installments = numInstallments;
+          data.installmentIndex = i + 1;
+        }
+        
+        batch.push(data);
       }
 
       await Promise.all(batch.map(exp => addDoc(collection(db, 'expenses'), exp)));

@@ -9,41 +9,27 @@ service cloud.firestore {
 
     // 0.1 Global Helpers
     function isSignedIn() { return request.auth != null; }
-    function isVerified() { 
-      return isSignedIn() && (
-        request.auth.token.email_verified == true || 
-        request.auth.token.firebase.sign_in_provider == 'facebook.com' ||
-        request.auth.token.firebase.sign_in_provider == 'google.com'
-      ); 
-    }
     function isValidId(id) { return id is string && id.size() > 0 && id.size() <= 128; }
     function incoming() { return request.resource.data; }
     function existing() { return resource.data; }
 
-    // Relational Helpers
-    function getHousehold(householdId) {
-      return get(/databases/$(database)/documents/households/$(householdId));
-    }
-    
-    function getUserData(userId) {
-      return get(/databases/$(database)/documents/users/$(userId)).data;
-    }
-
-    // Test connection collection
-    match /test/{docId} {
-      allow read: if true;
+    // Helper to check if user is a member of the household
+    function isMemberOf(householdId) {
+      return isSignedIn() && 
+             exists(/databases/$(database)/documents/households/$(householdId)) &&
+             request.auth.uid in get(/databases/$(database)/documents/households/$(householdId)).data.members;
     }
 
     // 1. Users Collection
     match /users/{userId} {
       function isValidUser(data) {
-        return data.uid == userId && 
-               data.email is string;
+        return data.uid == userId && (data.email is string || data.email == null);
       }
       
       allow get: if isSignedIn() && request.auth.uid == userId;
       allow create: if isSignedIn() && request.auth.uid == userId && isValidUser(incoming());
       allow update: if isSignedIn() && request.auth.uid == userId && 
+                       isValidUser(incoming()) &&
                        incoming().uid == userId &&
                        incoming().diff(existing()).affectedKeys().hasOnly(['displayName', 'photoURL', 'householdId', 'email']);
     }
@@ -56,8 +42,7 @@ service cloud.firestore {
                data.ownerId is string && 
                data.members is list && data.members.size() >= 1 && 
                data.budget is map &&
-               (!('createdAt' in data) || data.createdAt is timestamp) &&
-               (!('monthlyIncome' in data) || data.monthlyIncome is number);
+               (!('createdAt' in data) || data.createdAt is timestamp || data.createdAt == null);
       }
 
       allow get: if isSignedIn() && request.auth.uid in existing().members;
@@ -67,16 +52,10 @@ service cloud.firestore {
                        isValidHousehold(incoming()) && 
                        incoming().ownerId == request.auth.uid &&
                        (!('createdAt' in incoming()) || incoming().createdAt == request.time);
-      allow update: if isSignedIn() && (isValidId(householdId) || true) &&
+      allow update: if isSignedIn() && 
                        (existing().ownerId == request.auth.uid || request.auth.uid in existing().members) &&
                        isValidHousehold(incoming()) &&
-                       incoming().ownerId == existing().ownerId &&
-                       (!('createdAt' in incoming()) || !('createdAt' in existing()) || incoming().createdAt == existing().createdAt);
-    }
-
-    // Helper to check if user belongs to the same household as the resource
-    function userBelongsToHousehold(hId) {
-      return isSignedIn() && getUserData(request.auth.uid).householdId == hId;
+                       incoming().ownerId == existing().ownerId;
     }
 
     // 3. Expenses Collection
@@ -89,85 +68,80 @@ service cloud.firestore {
                data.date is string &&
                data.userId == request.auth.uid &&
                isValidId(data.householdId) &&
-               data.createdAt is timestamp;
+               (data.createdAt is timestamp || data.createdAt == null) &&
+               (!('installments' in data) || data.installments is number) &&
+               (!('installmentIndex' in data) || data.installmentIndex is number);
       }
 
-      allow list: if isSignedIn() && (resource.data.userId == request.auth.uid || userBelongsToHousehold(resource.data.householdId));
-      allow get: if isSignedIn() && (existing().userId == request.auth.uid || userBelongsToHousehold(existing().householdId));
-      allow delete: if isSignedIn() && (existing().userId == request.auth.uid || userBelongsToHousehold(existing().householdId));
+      allow list: if isSignedIn() && (resource.data.userId == request.auth.uid || isMemberOf(resource.data.householdId));
+      allow get: if isSignedIn() && (existing().userId == request.auth.uid || isMemberOf(existing().householdId));
+      allow delete: if isSignedIn() && (existing().userId == request.auth.uid || isMemberOf(existing().householdId));
       
-      allow create: if isSignedIn() && isValidExpense(incoming()) && incoming().createdAt == request.time;
+      allow create: if isSignedIn() && isValidExpense(incoming()) && (incoming().createdAt == request.time || incoming().createdAt == null);
       allow update: if isSignedIn() && 
                        isValidExpense(incoming()) &&
                        incoming().householdId == existing().householdId &&
                        incoming().userId == existing().userId &&
-                       incoming().createdAt == existing().createdAt &&
-                       (existing().userId == request.auth.uid || userBelongsToHousehold(existing().householdId));
+                       (existing().userId == request.auth.uid || isMemberOf(existing().householdId));
     }
 
     // 4. Goals Collection
     match /goals/{goalId} {
       function isValidGoal(data) {
-        return data.keys().hasAll(['title', 'targetAmount', 'savedAmount', 'householdId', 'createdAt']) &&
+        return data.keys().hasAll(['title', 'targetAmount', 'savedAmount', 'householdId']) &&
                data.title is string &&
                data.targetAmount is number &&
                data.savedAmount is number &&
-               isValidId(data.householdId) &&
-               data.createdAt is timestamp;
+               isValidId(data.householdId);
       }
 
-      allow get, delete: if userBelongsToHousehold(existing().householdId);
-      allow list: if userBelongsToHousehold(resource.data.householdId);
+      allow get, delete: if isMemberOf(existing().householdId);
+      allow list: if isMemberOf(resource.data.householdId);
       
-      allow create: if userBelongsToHousehold(incoming().householdId) && isValidGoal(incoming()) && incoming().createdAt == request.time;
-      allow update: if userBelongsToHousehold(existing().householdId) && 
+      allow create: if isMemberOf(incoming().householdId) && isValidGoal(incoming());
+      allow update: if isMemberOf(existing().householdId) && 
                        isValidGoal(incoming()) &&
-                       incoming().householdId == existing().householdId &&
-                       incoming().createdAt == existing().createdAt;
+                       incoming().householdId == existing().householdId;
     }
 
     // 5. Subscriptions Collection
     match /subscriptions/{subscriptionId} {
       function isValidSubscription(data) {
-        return data.keys().hasAll(['name', 'amount', 'frequency', 'nextDueDate', 'householdId', 'status', 'createdAt']) &&
+        return data.keys().hasAll(['name', 'amount', 'frequency', 'nextDueDate', 'householdId', 'status']) &&
                data.name is string &&
                data.amount is number &&
                data.frequency is string &&
                data.nextDueDate is string &&
-               isValidId(data.householdId) &&
-               data.createdAt is timestamp;
+               isValidId(data.householdId);
       }
 
-      allow get, delete: if userBelongsToHousehold(existing().householdId);
-      allow list: if userBelongsToHousehold(resource.data.householdId);
+      allow get, delete: if isMemberOf(existing().householdId);
+      allow list: if isMemberOf(resource.data.householdId);
       
-      allow create: if userBelongsToHousehold(incoming().householdId) && isValidSubscription(incoming()) && incoming().createdAt == request.time;
-      allow update: if userBelongsToHousehold(existing().householdId) && 
+      allow create: if isMemberOf(incoming().householdId) && isValidSubscription(incoming());
+      allow update: if isMemberOf(existing().householdId) && 
                        isValidSubscription(incoming()) &&
-                       incoming().householdId == existing().householdId &&
-                       incoming().createdAt == existing().createdAt;
+                       incoming().householdId == existing().householdId;
     }
 
     // 6. Fixed Expenses Collection
     match /fixedExpenses/{fixedExpenseId} {
       function isValidFixedExpense(data) {
-        return data.keys().hasAll(['name', 'amount', 'category', 'dueDate', 'householdId', 'createdAt']) &&
+        return data.keys().hasAll(['name', 'amount', 'category', 'dueDate', 'householdId']) &&
                data.name is string &&
                data.amount is number &&
                data.category is string &&
                data.dueDate is number &&
-               isValidId(data.householdId) &&
-               data.createdAt is timestamp;
+               isValidId(data.householdId);
       }
 
-      allow get, delete: if userBelongsToHousehold(existing().householdId);
-      allow list: if userBelongsToHousehold(resource.data.householdId);
+      allow get, delete: if isMemberOf(existing().householdId);
+      allow list: if isMemberOf(resource.data.householdId);
       
-      allow create: if userBelongsToHousehold(incoming().householdId) && isValidFixedExpense(incoming()) && incoming().createdAt == request.time;
-      allow update: if userBelongsToHousehold(existing().householdId) && 
+      allow create: if isMemberOf(incoming().householdId) && isValidFixedExpense(incoming());
+      allow update: if isMemberOf(existing().householdId) && 
                        isValidFixedExpense(incoming()) &&
-                       incoming().householdId == existing().householdId &&
-                       incoming().createdAt == existing().createdAt;
+                       incoming().householdId == existing().householdId;
     }
   }
 }
