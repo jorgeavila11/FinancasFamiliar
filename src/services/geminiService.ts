@@ -23,7 +23,7 @@ export async function extractReceiptData(base64Image: string, mimeType: string):
               },
             },
             {
-              text: "Extract the following details from this receipt: Merchant Name (merchant), Total Amount (amount), Date (date in YYYY-MM-DD format), and Category (category). The category must be one of: Moradia, Alimentação, Transporte, Lazer, Saúde, Educação, Utilidades, or Outros. Return the data in JSON format.",
+              text: "Extract the following details from this Brazilian receipt (NFC-e, Cupom Fiscal, or invoice): Merchant Name (merchant), Total Amount (amount as a number), Date (date in YYYY-MM-DD format), and Category (category). For the Category, analyze the merchant name and items to choose the best fit from: Moradia (Rent/Bills), Alimentação (Supermarket/Dining), Transporte (Fuel/Uber), Lazer (Leisure/Movies), Saúde (Pharmacy/Doctor), Educação (Books/Courses), Utilidades (Power/Water), or Outros. Return the data in strictly valid JSON format.",
             },
           ],
         },

@@ -98,6 +98,9 @@ const ScanReceipt: React.FC<ScanReceiptProps> = ({ onComplete }) => {
 
   return (
     <div className="max-w-2xl mx-auto space-y-8 pb-12">
+      {isScanning && (
+        <div className="absolute inset-0 bg-white/20 animate-pulse pointer-events-none z-50 mix-blend-overlay" />
+      )}
       <AnimatePresence mode="wait">
         {step === 1 ? (
           <motion.section 
@@ -153,6 +156,9 @@ const ScanReceipt: React.FC<ScanReceiptProps> = ({ onComplete }) => {
                 />
                 <p className="text-white text-sm font-bold uppercase tracking-widest opacity-80">
                   {isScanning ? `Analisando... ${scanProgress}%` : 'Posicione o recibo ou escolha um arquivo'}
+                </p>
+                <p className="text-white/40 text-[9px] uppercase tracking-tighter text-center max-w-[200px]">
+                  Dica: Você pode baixar fotos do WhatsApp e clicar no ícone de galeria
                 </p>
                 <div className="flex items-center gap-12">
                   <button className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-white/30 active:scale-90 transition-all">
