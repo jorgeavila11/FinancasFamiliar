@@ -23,15 +23,15 @@ service cloud.firestore {
     // 1. Users Collection
     match /users/{userId} {
       function isValidUser(data) {
-        return data.uid == userId && (data.email is string || data.email == null);
+        return data.uid == userId && 
+               (data.email is string || data.email == null);
       }
       
       allow get: if isSignedIn() && request.auth.uid == userId;
       allow create: if isSignedIn() && request.auth.uid == userId && isValidUser(incoming());
       allow update: if isSignedIn() && request.auth.uid == userId && 
                        isValidUser(incoming()) &&
-                       incoming().uid == userId &&
-                       incoming().diff(existing()).affectedKeys().hasOnly(['displayName', 'photoURL', 'householdId', 'email']);
+                       incoming().diff(existing()).affectedKeys().hasOnly(['displayName', 'photoURL', 'householdId', 'email', 'updatedAt', 'geminiApiKey']);
     }
 
     // 2. Households Collection

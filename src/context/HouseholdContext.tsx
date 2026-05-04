@@ -6,20 +6,29 @@ import { handleFirestoreError, OperationType } from '../lib/firestoreErrorHandle
 
 interface HouseholdContextType {
   household: Household | null;
+  profile: UserProfile | null;
   loading: boolean;
   error: string | null;
+  refreshHousehold: () => Promise<void>;
 }
 
 const HouseholdContext = createContext<HouseholdContextType>({
   household: null,
+  profile: null,
   loading: true,
   error: null,
+  refreshHousehold: async () => {},
 });
 
 export const HouseholdProvider: React.FC<{ userId: string; profile: UserProfile | null; children: React.ReactNode }> = ({ userId, profile, children }) => {
   const [household, setHousehold] = useState<Household | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  const refreshHousehold = async () => {
+    // Household is already sync'd via onSnapshot, but we can provide this for compatibility
+    // or manual triggers if needed.
+  };
 
   useEffect(() => {
     if (!profile?.householdId) {
@@ -62,7 +71,7 @@ export const HouseholdProvider: React.FC<{ userId: string; profile: UserProfile 
   }, [userId, profile?.householdId]);
 
   return (
-    <HouseholdContext.Provider value={{ household, loading, error }}>
+    <HouseholdContext.Provider value={{ household, profile, loading, error, refreshHousehold }}>
       {children}
     </HouseholdContext.Provider>
   );

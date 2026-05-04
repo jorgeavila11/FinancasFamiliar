@@ -13,7 +13,7 @@ interface ScanReceiptProps {
 }
 
 const ScanReceipt: React.FC<ScanReceiptProps> = ({ onComplete }) => {
-  const { household } = useHousehold();
+  const { household, profile } = useHousehold();
   const [step, setStep] = useState(1);
   const [isScanning, setIsScanning] = useState(false);
   const [scanProgress, setScanProgress] = useState(0);
@@ -49,7 +49,8 @@ const ScanReceipt: React.FC<ScanReceiptProps> = ({ onComplete }) => {
       const { base64, mimeType } = await fileToBase64(file);
       setScanProgress(50);
       
-      const data = await extractReceiptData(base64, mimeType);
+      const apiKey = profile?.geminiApiKey;
+      const data = await extractReceiptData(base64, mimeType, apiKey);
       setScanProgress(90);
       
       setExtractedData(data);
@@ -59,10 +60,15 @@ const ScanReceipt: React.FC<ScanReceiptProps> = ({ onComplete }) => {
         setIsScanning(false);
         setStep(2);
       }, 500);
-    } catch (error) {
+    } catch (error: any) {
       console.error("Scan Error:", error);
       setIsScanning(false);
-      alert("Erro ao processar o recibo. Tente novamente.");
+      
+      if (error.message?.includes("No Gemini API Key provided")) {
+        alert("Nenhuma chave API Gemini encontrada. Configure sua própria chave em Configurações > Meu Perfil para usar o scanner.");
+      } else {
+        alert("Erro ao processar o recibo. Tente novamente.");
+      }
     }
   };
 
@@ -114,6 +120,16 @@ const ScanReceipt: React.FC<ScanReceiptProps> = ({ onComplete }) => {
               <h2 className="font-headline-md text-3xl font-bold text-primary">Escanear Recibo</h2>
               <span className="text-[10px] font-bold text-primary bg-primary/10 px-4 py-2 rounded-full uppercase tracking-widest">Passo 1 de 2</span>
             </div>
+
+            {!profile?.geminiApiKey && (
+              <div className="bg-amber-50 border border-amber-200 p-4 rounded-2xl flex items-center gap-3">
+                <Settings className="w-5 h-5 text-amber-600 shrink-0" />
+                <p className="text-xs text-amber-900 font-medium leading-tight">
+                  <span className="font-bold">Aviso:</span> Você ainda não configurou sua chave API Gemini. 
+                  Vá em <span className="font-bold">Meu Perfil</span> para adicionar uma e poder usar o scanner.
+                </p>
+              </div>
+            )}
 
             <div className="relative aspect-[3/4] bg-slate-900 rounded-3xl overflow-hidden shadow-2xl border-4 border-white group">
               {/* Mock Camera View */}

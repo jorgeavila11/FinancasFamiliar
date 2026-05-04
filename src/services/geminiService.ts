@@ -1,7 +1,5 @@
 import { GoogleGenAI, Type } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-
 export interface ExtractedReceiptData {
   merchant: string;
   amount: number;
@@ -9,7 +7,14 @@ export interface ExtractedReceiptData {
   category: string;
 }
 
-export async function extractReceiptData(base64Image: string, mimeType: string): Promise<ExtractedReceiptData> {
+export async function extractReceiptData(base64Image: string, mimeType: string, userApiKey?: string | null): Promise<ExtractedReceiptData> {
+  const apiKey = userApiKey || process.env.GEMINI_API_KEY;
+  if (!apiKey) {
+    throw new Error("No Gemini API Key provided. Please configure it in Settings.");
+  }
+  
+  const ai = new GoogleGenAI({ apiKey });
+  
   try {
     const response = await ai.models.generateContent({
       model: "gemini-3-flash-preview",

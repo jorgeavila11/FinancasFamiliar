@@ -9,7 +9,8 @@
         "displayName": { "type": "string" },
         "email": { "type": "string" },
         "photoURL": { "type": "string" },
-        "householdId": { "type": "string" }
+        "householdId": { "type": "string" },
+        "geminiApiKey": { "type": "string" }
       },
       "required": ["uid", "email"]
     },

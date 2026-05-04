@@ -9,6 +9,7 @@ export interface UserProfile {
   email: string | null;
   photoURL?: string | null;
   householdId?: string;
+  geminiApiKey?: string | null;
 }
 
 export interface Household {

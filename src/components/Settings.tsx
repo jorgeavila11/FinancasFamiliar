@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useHousehold } from '../context/HouseholdContext';
 import { db, auth } from '../lib/firebase';
-import { doc, updateDoc } from 'firebase/firestore';
+import { doc, updateDoc, serverTimestamp } from 'firebase/firestore';
 import { handleFirestoreError, OperationType } from '../lib/firestoreErrorHandler';
 import { motion } from 'motion/react';
-import { User, Shield, Bell, CreditCard, Users, ChevronRight, Save, LogOut } from 'lucide-react';
+import { User, Shield, Bell, CreditCard, Users, ChevronRight, Save, LogOut, Check } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { signOut } from 'firebase/auth';
 
@@ -13,19 +13,34 @@ const Settings: React.FC = () => {
   const [displayName, setDisplayName] = useState(profile?.displayName || '');
   const [householdName, setHouseholdName] = useState(household?.name || '');
   const [monthlyIncome, setMonthlyIncome] = useState(household?.monthlyIncome?.toString() || '');
+  const [geminiApiKey, setGeminiApiKey] = useState(profile?.geminiApiKey || '');
   const [isSaving, setIsSaving] = useState(false);
+  const [saveSuccess, setSaveSuccess] = useState(false);
   const [activeSection, setActiveSection] = useState('profile');
+
+  // Keep local state in sync with profile data when it loads
+  React.useEffect(() => {
+    if (profile?.displayName && !displayName) {
+      setDisplayName(profile.displayName);
+    }
+    if (profile?.geminiApiKey && !geminiApiKey) {
+      setGeminiApiKey(profile.geminiApiKey);
+    }
+  }, [profile?.displayName, profile?.geminiApiKey]);
 
   const handleSaveProfile = async () => {
     if (!profile) return;
     setIsSaving(true);
+    setSaveSuccess(false);
     const userPath = `users/${profile.uid}`;
     try {
       await updateDoc(doc(db, 'users', profile.uid), {
-        displayName: displayName
+        displayName: displayName,
+        geminiApiKey: geminiApiKey,
+        updatedAt: serverTimestamp()
       });
-      // Force reload or rely on context update if profile was in context
-      alert('Perfil atualizado com sucesso!');
+      setSaveSuccess(true);
+      setTimeout(() => setSaveSuccess(false), 3000);
     } catch (err) {
       handleFirestoreError(err, OperationType.UPDATE, userPath);
     } finally {
@@ -143,12 +158,37 @@ const Settings: React.FC = () => {
                         {profile?.email}
                       </div>
                     </div>
+                    <div className="space-y-2">
+                      <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest px-1">Chave API Gemini (Para Scanner)</label>
+                      <input 
+                        type="password"
+                        value={geminiApiKey}
+                        onChange={(e) => setGeminiApiKey(e.target.value)}
+                        className="w-full h-14 bg-slate-50 dark:bg-slate-800 rounded-2xl px-6 font-bold text-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                        placeholder="AIzaSy..."
+                      />
+                      <p className="text-[10px] text-slate-400 px-1 leading-tight">
+                        Obtenha sua chave gratuita em <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Google AI Studio</a>. Isso evita o uso dos limites do sistema.
+                      </p>
+                    </div>
                     <button 
                       onClick={handleSaveProfile}
                       disabled={isSaving}
-                      className="bg-primary text-white h-14 px-8 rounded-2xl font-bold hover:scale-[1.02] active:scale-95 transition-all w-full md:w-auto shadow-lg shadow-primary/20 flex items-center justify-center gap-2"
+                      className={cn(
+                        "h-14 px-8 rounded-2xl font-bold hover:scale-[1.02] active:scale-95 transition-all w-full md:w-auto shadow-lg flex items-center justify-center gap-2",
+                        saveSuccess ? "bg-emerald-500 text-white shadow-emerald-500/20" : "bg-primary text-white shadow-primary/20"
+                      )}
                     >
-                      {isSaving ? 'Salvando...' : 'Salvar Alterações'}
+                      {isSaving ? (
+                        'Salvando...'
+                      ) : saveSuccess ? (
+                        <>
+                          <Check className="w-5 h-5" />
+                          Salvo com sucesso!
+                        </>
+                      ) : (
+                        'Salvar Alterações'
+                      )}
                     </button>
                   </div>
                 </div>
