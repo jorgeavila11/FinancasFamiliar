@@ -7,6 +7,7 @@ import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { useHousehold } from '../context/HouseholdContext';
 import { handleFirestoreError, OperationType } from '../lib/firestoreErrorHandler';
 import { extractReceiptData, ExtractedReceiptData } from '../services/geminiService';
+import { decryptApiKey } from '../lib/encryption';
 
 interface ScanReceiptProps {
   onComplete: () => void;
@@ -49,7 +50,10 @@ const ScanReceipt: React.FC<ScanReceiptProps> = ({ onComplete }) => {
       const { base64, mimeType } = await fileToBase64(file);
       setScanProgress(50);
       
-      const apiKey = profile?.geminiApiKey;
+      const apiKey = profile?.geminiApiKey && profile.uid 
+        ? decryptApiKey(profile.geminiApiKey, profile.uid) 
+        : profile?.geminiApiKey;
+        
       const data = await extractReceiptData(base64, mimeType, apiKey);
       setScanProgress(90);
       

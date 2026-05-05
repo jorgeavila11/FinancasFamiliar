@@ -3,6 +3,7 @@ import { useHousehold } from '../context/HouseholdContext';
 import { db, auth } from '../lib/firebase';
 import { doc, updateDoc, serverTimestamp } from 'firebase/firestore';
 import { handleFirestoreError, OperationType } from '../lib/firestoreErrorHandler';
+import { encryptApiKey, decryptApiKey } from '../lib/encryption';
 import { motion } from 'motion/react';
 import { User, Shield, Bell, CreditCard, Users, ChevronRight, Save, LogOut, Check } from 'lucide-react';
 import { cn } from '../lib/utils';
@@ -23,10 +24,11 @@ const Settings: React.FC = () => {
     if (profile?.displayName && !displayName) {
       setDisplayName(profile.displayName);
     }
-    if (profile?.geminiApiKey && !geminiApiKey) {
-      setGeminiApiKey(profile.geminiApiKey);
+    if (profile?.geminiApiKey && !geminiApiKey && profile.uid) {
+      const decrypted = decryptApiKey(profile.geminiApiKey, profile.uid);
+      setGeminiApiKey(decrypted);
     }
-  }, [profile?.displayName, profile?.geminiApiKey]);
+  }, [profile?.displayName, profile?.geminiApiKey, profile?.uid]);
 
   const handleSaveProfile = async () => {
     if (!profile) return;
@@ -34,9 +36,10 @@ const Settings: React.FC = () => {
     setSaveSuccess(false);
     const userPath = `users/${profile.uid}`;
     try {
+      const encryptedKey = encryptApiKey(geminiApiKey, profile.uid);
       await updateDoc(doc(db, 'users', profile.uid), {
         displayName: displayName,
-        geminiApiKey: geminiApiKey,
+        geminiApiKey: encryptedKey,
         updatedAt: serverTimestamp()
       });
       setSaveSuccess(true);
