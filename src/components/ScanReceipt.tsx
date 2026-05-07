@@ -166,7 +166,7 @@ const ScanReceipt: React.FC<ScanReceiptProps> = ({ onComplete }) => {
               </div>
 
               {/* Controls */}
-              <div className="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col items-center gap-6">
+              <div className="absolute bottom-0 left-0 w-full p-6 sm:p-8 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col items-center gap-4 sm:gap-6">
                 <input 
                   type="file" 
                   ref={fileInputRef} 
@@ -174,26 +174,26 @@ const ScanReceipt: React.FC<ScanReceiptProps> = ({ onComplete }) => {
                   accept="image/*" 
                   onChange={handleFileSelect}
                 />
-                <p className="text-white text-sm font-bold uppercase tracking-widest opacity-80">
+                <p className="text-white text-[10px] sm:text-sm font-bold uppercase tracking-widest opacity-80 text-center">
                   {isScanning ? `Analisando... ${scanProgress}%` : 'Posicione o recibo ou escolha um arquivo'}
                 </p>
-                <p className="text-white/40 text-[9px] uppercase tracking-tighter text-center max-w-[200px]">
+                <p className="text-white/40 text-[9px] uppercase tracking-tighter text-center max-w-[200px] hidden sm:block">
                   Dica: Você pode baixar fotos do WhatsApp e clicar no ícone de galeria
                 </p>
-                <div className="flex items-center gap-12">
+                <div className="flex items-center gap-6 sm:gap-12">
                   <button className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-white/30 active:scale-90 transition-all">
                     <Flashlight className="w-6 h-6" />
                   </button>
                   <button 
                     onClick={triggerFileSelect}
                     disabled={isScanning}
-                    className="w-20 h-20 rounded-full border-4 border-white p-1 group active:scale-90 transition-all flex items-center justify-center bg-white/10"
+                    className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-4 border-white p-1 group active:scale-90 transition-all flex items-center justify-center bg-white/10"
                   >
                     {isScanning ? (
-                      <Loader2 className="w-10 h-10 text-white animate-spin" />
+                      <Loader2 className="w-8 h-8 sm:w-10 sm:h-10 text-white animate-spin" />
                     ) : (
                       <div className="w-full h-full rounded-full bg-white group-hover:bg-slate-200 transition-colors shadow-xl flex items-center justify-center">
-                        <Camera className="w-8 h-8 text-primary" />
+                        <Camera className="w-6 h-6 sm:w-8 sm:h-8 text-primary" />
                       </div>
                     )}
                   </button>
