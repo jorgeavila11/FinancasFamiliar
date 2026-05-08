@@ -141,7 +141,7 @@ const Expenses: React.FC = () => {
             onClick={() => setActiveView('list')}
             className={cn(
               "px-4 py-2 rounded-lg text-xs font-bold transition-all",
-              activeView === 'list' ? "bg-primary text-white shadow-lg shadow-primary/20" : "bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700"
+              activeView === 'list' ? "bg-primary text-on-primary shadow-lg shadow-primary/20" : "bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700"
             )}
           >
             LISTA
@@ -150,7 +150,7 @@ const Expenses: React.FC = () => {
             onClick={() => setActiveView('installments')}
             className={cn(
               "px-4 py-2 rounded-lg text-xs font-bold transition-all",
-              activeView === 'installments' ? "bg-primary text-white shadow-lg shadow-primary/20" : "bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700"
+              activeView === 'installments' ? "bg-primary text-on-primary shadow-lg shadow-primary/20" : "bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700"
             )}
           >
             ATIVOS
@@ -160,7 +160,7 @@ const Expenses: React.FC = () => {
 
       <button 
         onClick={() => setShowAddModal(true)}
-        className="w-full bg-primary text-white py-4 rounded-2xl flex items-center justify-center gap-3 shadow-xl shadow-primary/20 hover:scale-[1.01] active:scale-95 transition-all group"
+        className="w-full bg-primary text-on-primary py-4 rounded-2xl flex items-center justify-center gap-3 shadow-xl shadow-primary/20 hover:scale-[1.01] active:scale-95 transition-all group"
       >
         <Plus className="w-5 h-5 group-hover:rotate-90 transition-transform" />
         <span className="font-bold">Lançamento Rápido</span>
@@ -286,7 +286,7 @@ const Expenses: React.FC = () => {
                 <button 
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-primary text-white h-16 rounded-2xl font-bold text-lg shadow-lg shadow-primary/20 flex items-center justify-center gap-3 active:scale-95 transition-all"
+                  className="w-full bg-primary text-on-primary h-16 rounded-2xl font-bold text-lg shadow-lg shadow-primary/20 flex items-center justify-center gap-3 active:scale-95 transition-all"
                 >
                   {isSubmitting ? "Salvando..." : <><Save className="w-5 h-5" /> Confirmar Lançamento</>}
                 </button>

@@ -226,7 +226,7 @@ const Settings: React.FC = () => {
                     >
                       <div className={cn(
                         "w-12 h-12 rounded-full flex items-center justify-center transition-colors",
-                        theme === t.id ? "bg-primary text-white" : "bg-slate-100 dark:bg-slate-800 text-slate-400"
+                        theme === t.id ? "bg-primary text-on-primary" : "bg-slate-100 dark:bg-slate-800 text-slate-400"
                       )}>
                         <t.icon className="w-6 h-6" />
                       </div>

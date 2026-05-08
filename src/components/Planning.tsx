@@ -482,7 +482,7 @@ const Planning: React.FC = () => {
                   <button 
                     onClick={handleSaveBudget}
                     disabled={isSaving}
-                    className="bg-primary text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-2 shadow-lg shadow-primary/20 hover:scale-105 active:scale-95 transition-all disabled:opacity-50"
+                    className="bg-primary text-on-primary px-8 py-4 rounded-2xl font-bold flex items-center gap-2 shadow-lg shadow-primary/20 hover:scale-105 active:scale-95 transition-all disabled:opacity-50"
                   >
                     <Save className="w-5 h-5" />
                     {isSaving ? 'Salvando...' : 'Salvar Alterações'}
@@ -612,7 +612,7 @@ const Planning: React.FC = () => {
                   <div className="col-span-2 pt-2">
                     <button 
                       type="submit"
-                      className="w-full bg-primary text-white h-14 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-primary/20"
+                      className="w-full bg-primary text-on-primary h-14 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-primary/20"
                     >
                       <Plus className="w-5 h-5" /> Cadastrar Gasto Fixo
                     </button>
