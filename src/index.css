@@ -28,6 +28,9 @@
   --color-on-background: var(--on-background);
   --color-on-surface: var(--on-surface);
   --color-on-surface-variant: var(--on-surface-variant);
+  --color-surface: var(--surface);
+  --color-surface-variant: var(--surface-variant);
+  --color-border-card: var(--border-card);
 
   --color-primary-fixed: #d6e3ff;
   --color-primary-fixed-dim: #b9c7e4;
@@ -49,10 +52,9 @@
   --on-background: #191c1e;
   --on-surface: #191c1e;
   --on-surface-variant: #44474d;
-}
-
-html, body {
-  @apply bg-background;
+  --surface: #ffffff;
+  --surface-variant: #f1f5f9;
+  --border-card: #f1f5f9;
 }
 
 .dark {
@@ -64,6 +66,9 @@ html, body {
   --on-surface-variant: #a1a1aa;
   --primary-container: #1e293b;
   --on-primary-container: #cbd5e1;
+  --surface: #0f172a;
+  --surface-variant: #1e293b;
+  --border-card: #1e293b;
 }
 
 :root {

@@ -132,15 +132,15 @@ const Planning: React.FC = () => {
       {/* Sub-navigation */}
       <section className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <h1 className="font-headline-md text-3xl font-bold text-[#0A192F] dark:text-white">Previsão e Agenda</h1>
-          <p className="text-on-surface-variant dark:text-slate-400 font-body-md opacity-70">Estruture o futuro financeiro da sua família.</p>
+          <h1 className="font-headline-md text-3xl font-bold text-on-surface">Previsão e Agenda</h1>
+          <p className="text-on-surface-variant font-body-md opacity-70">Estruture o futuro financeiro da sua família.</p>
         </div>
-        <div className="flex bg-slate-100/80 dark:bg-slate-800/80 backdrop-blur rounded-2xl p-1.5 gap-1 self-start md:self-auto border border-slate-200 dark:border-slate-700">
+        <div className="flex bg-surface-variant/80 backdrop-blur rounded-2xl p-1.5 gap-1 self-start md:self-auto border border-border-card">
           <button 
             onClick={() => setActiveTab('calendar')}
             className={cn(
               "px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all",
-              activeTab === 'calendar' ? "bg-white dark:bg-slate-700 text-primary dark:text-white shadow-sm" : "text-slate-500 hover:text-slate-700 dark:hover:text-slate-300"
+              activeTab === 'calendar' ? "bg-surface text-primary shadow-sm" : "text-on-surface-variant hover:text-on-surface"
             )}
           >
             Visão Geral
@@ -149,7 +149,7 @@ const Planning: React.FC = () => {
             onClick={() => setActiveTab('budget')}
             className={cn(
               "px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all",
-              activeTab === 'budget' ? "bg-white dark:bg-slate-700 text-primary dark:text-white shadow-sm" : "text-slate-500 hover:text-slate-700 dark:hover:text-slate-300"
+              activeTab === 'budget' ? "bg-surface text-primary shadow-sm" : "text-on-surface-variant hover:text-on-surface"
             )}
           >
             Orçamento
@@ -158,7 +158,7 @@ const Planning: React.FC = () => {
             onClick={() => setActiveTab('fixed')}
             className={cn(
               "px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all",
-              activeTab === 'fixed' ? "bg-white dark:bg-slate-700 text-primary dark:text-white shadow-sm" : "text-slate-500 hover:text-slate-700 dark:hover:text-slate-300"
+              activeTab === 'fixed' ? "bg-surface text-primary shadow-sm" : "text-on-surface-variant hover:text-on-surface"
             )}
           >
             Fixos
@@ -178,30 +178,30 @@ const Planning: React.FC = () => {
             {/* Fluxo de Caixa Section */}
             <section className="space-y-6">
               <div className="flex md:items-center justify-between flex-col md:row-gap-2 md:flex-row gap-4">
-                <h2 className="font-headline-md text-2xl font-black text-primary dark:text-white">Previsão de Fluxo de Caixa</h2>
+                <h2 className="font-headline-md text-2xl font-black text-on-surface">Previsão de Fluxo de Caixa</h2>
                 <div className="flex gap-4">
                   <span className="flex items-center gap-2 text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest">
                     <span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> Projetado
                   </span>
-                  <span className="flex items-center gap-2 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">
+                  <span className="flex items-center gap-2 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">
                     <span className="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-700"></span> Atual
                   </span>
                 </div>
               </div>
 
-              <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 dark:border-slate-800 flex flex-col">
+              <div className="bg-surface rounded-[2.5rem] p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-border-card flex flex-col">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
-                  <div className="p-6 rounded-2xl bg-slate-50/50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700 flex flex-col justify-between h-32">
-                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-1">Saldo Inicial</p>
-                    <p className="text-3xl font-black text-primary dark:text-white">R$ 12.450,<span className="text-xl text-slate-400">00</span></p>
+                  <div className="p-6 rounded-2xl bg-surface-variant/50 border border-border-card flex flex-col justify-between h-32">
+                    <p className="text-[10px] font-black text-on-surface-variant uppercase tracking-[0.2em] mb-1">Saldo Inicial</p>
+                    <p className="text-3xl font-black text-on-surface">R$ 12.450,<span className="text-xl text-on-surface-variant">00</span></p>
                   </div>
                   <div className="p-6 rounded-2xl bg-emerald-50/30 dark:bg-emerald-900/20 border border-emerald-100 dark:border-emerald-900 flex flex-col justify-between h-32">
                     <p className="text-[10px] font-black text-emerald-600/60 dark:text-emerald-400/60 uppercase tracking-[0.2em] mb-1">Pico Previsto</p>
                     <p className="text-3xl font-black text-emerald-600 dark:text-emerald-400">R$ 14.200,<span className="text-xl opacity-60">00</span></p>
                   </div>
-                  <div className="p-6 rounded-2xl bg-slate-50/50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700 flex flex-col justify-between h-32">
-                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-1">Final Estimado</p>
-                    <p className="text-3xl font-black text-primary dark:text-white">R$ 11.120,<span className="text-xl text-slate-400">00</span></p>
+                  <div className="p-6 rounded-2xl bg-surface-variant/50 border border-border-card flex flex-col justify-between h-32">
+                    <p className="text-[10px] font-black text-on-surface-variant uppercase tracking-[0.2em] mb-1">Final Estimado</p>
+                    <p className="text-3xl font-black text-on-surface">R$ 11.120,<span className="text-xl text-on-surface-variant">00</span></p>
                   </div>
                 </div>
 
@@ -253,28 +253,28 @@ const Planning: React.FC = () => {
             {/* Calendar Section */}
             <section className="space-y-6">
               <div className="flex items-center justify-between">
-                <h2 className="text-4xl font-black text-primary dark:text-white capitalize">{monthName} {yearName}</h2>
-                <div className="flex bg-slate-100 dark:bg-slate-800 rounded-xl p-1 gap-1 border border-slate-200 dark:border-slate-700">
-                  <button onClick={prevMonth} className="w-10 h-10 flex items-center justify-center hover:bg-white dark:hover:bg-slate-700 rounded-lg transition-all text-slate-600 dark:text-slate-400">
+                <h2 className="text-4xl font-black text-on-surface capitalize">{monthName} {yearName}</h2>
+                <div className="flex bg-surface-variant rounded-xl p-1 gap-1 border border-border-card">
+                  <button onClick={prevMonth} className="w-10 h-10 flex items-center justify-center hover:bg-surface rounded-lg transition-all text-on-surface-variant">
                     <ChevronLeft className="w-5 h-5" />
                   </button>
-                  <button onClick={nextMonth} className="w-10 h-10 flex items-center justify-center hover:bg-white dark:hover:bg-slate-700 rounded-lg transition-all text-slate-600 dark:text-slate-400">
+                  <button onClick={nextMonth} className="w-10 h-10 flex items-center justify-center hover:bg-surface rounded-lg transition-all text-on-surface-variant">
                     <ChevronRight className="w-5 h-5" />
                   </button>
                 </div>
               </div>
 
-              <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 dark:border-slate-800">
+              <div className="bg-surface rounded-[2.5rem] p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-border-card">
                 <div className="grid grid-cols-7 gap-1 mb-4">
                   {['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SÁB'].map(day => (
-                    <div key={day} className="text-center text-[10px] font-black text-slate-400 uppercase tracking-widest py-2">
+                    <div key={day} className="text-center text-[10px] font-black text-on-surface-variant uppercase tracking-widest py-2">
                       {day}
                     </div>
                   ))}
                 </div>
                 <div className="grid grid-cols-7 gap-1">
                   {[...Array(firstDayOfMonth(currentDate))].map((_, i) => (
-                    <div key={`empty-${i}`} className="h-24 p-2 opacity-20 bg-slate-50/50 dark:bg-slate-800 rounded-xl" />
+                    <div key={`empty-${i}`} className="h-24 p-2 opacity-20 bg-surface-variant rounded-xl" />
                   ))}
                   {[...Array(daysInMonth(currentDate))].map((_, i) => {
                     const day = i + 1;
@@ -289,24 +289,24 @@ const Planning: React.FC = () => {
                         className={cn(
                           "h-24 p-3 rounded-2xl flex flex-col justify-between transition-all group cursor-pointer border-2",
                           isSelected 
-                            ? "bg-slate-900 text-white border-slate-900 shadow-xl shadow-slate-900/20" 
+                            ? "bg-primary text-on-primary border-primary shadow-xl shadow-primary/20" 
                             : dayExpenses.length > 0 
-                              ? "bg-primary/5 dark:bg-primary/10 text-primary dark:text-white border-primary/20 hover:border-primary/40 shadow-sm" 
-                              : "bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 text-primary dark:text-slate-300 border-transparent"
+                              ? "bg-primary/5 text-primary border-primary/20 hover:border-primary/40 shadow-sm" 
+                              : "bg-surface hover:bg-surface-variant text-on-surface border-transparent"
                         )}
                       >
                         <div className="flex justify-between items-start">
-                          <span className={cn("font-black text-xl", isSelected ? "text-white" : "text-primary dark:text-white")}>{day}</span>
+                          <span className={cn("font-black text-xl", isSelected ? "text-on-primary" : "text-on-surface")}>{day}</span>
                           {isToday && !isSelected && <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]" />}
                         </div>
 
                         {dayExpenses.length > 0 && (
                           <div className="space-y-1 mt-1 overflow-hidden">
-                            <div className={cn("h-1 w-8 rounded-full mb-2", isSelected ? "bg-white/20" : "bg-primary/10")} />
+                            <div className={cn("h-1 w-8 rounded-full mb-2", isSelected ? "bg-on-primary/20" : "bg-primary/10")} />
                             {dayExpenses.length === 1 ? (
                               <p className={cn(
                                 "text-[8px] font-black uppercase tracking-widest truncate leading-tight",
-                                isSelected ? "text-white/80" : "text-primary/70"
+                                isSelected ? "text-on-primary/80" : "text-primary/70"
                               )}>
                                 {dayExpenses[0].name}
                               </p>
@@ -314,13 +314,13 @@ const Planning: React.FC = () => {
                               <div className="flex flex-col gap-0.5">
                                 <p className={cn(
                                   "text-[8px] font-black uppercase tracking-widest truncate leading-tight",
-                                  isSelected ? "text-white/80" : "text-primary/70"
+                                  isSelected ? "text-on-primary/80" : "text-primary/70"
                                 )}>
                                   {dayExpenses.length} CONTAS
                                 </p>
                                 <div className="flex gap-0.5">
                                   {dayExpenses.slice(0, 3).map((_, idx) => (
-                                    <div key={idx} className={cn("w-1 h-1 rounded-full", isSelected ? "bg-white/40" : "bg-primary/30")} />
+                                    <div key={idx} className={cn("w-1 h-1 rounded-full", isSelected ? "bg-on-primary/40" : "bg-primary/30")} />
                                   ))}
                                 </div>
                               </div>
@@ -341,13 +341,13 @@ const Planning: React.FC = () => {
             {/* Projected Expenses Section */}
             <section className="space-y-6">
               <div className="flex items-center justify-between">
-                <h2 className="font-headline-md text-2xl font-black text-primary dark:text-white">
+                <h2 className="font-headline-md text-2xl font-black text-on-surface">
                   {selectedDay ? `Compromissos do Dia ${selectedDay}` : 'Próximos Gastos Projetados'}
                 </h2>
                 {selectedDay && (
                   <button 
                     onClick={() => setSelectedDay(null)}
-                    className="text-[10px] font-black text-primary/40 dark:text-white/40 uppercase tracking-widest hover:text-primary dark:hover:text-white transition-colors"
+                    className="text-[10px] font-black text-on-surface-variant/40 uppercase tracking-widest hover:text-on-surface transition-colors"
                   >
                     Ver Todos
                   </button>
@@ -359,7 +359,7 @@ const Planning: React.FC = () => {
                   .filter(exp => !selectedDay || exp.dueDate === selectedDay)
                   .sort((a, b) => a.dueDate - b.dueDate)
                   .map(exp => (
-                  <div key={exp.id} className="flex items-center justify-between p-6 bg-white dark:bg-slate-900 rounded-[2rem] border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all group">
+                  <div key={exp.id} className="flex items-center justify-between p-6 bg-surface rounded-[2rem] border border-border-card shadow-sm hover:shadow-md transition-all group">
                     <div className="flex items-center gap-6">
                       <div className="w-16 h-16 bg-slate-900 dark:bg-slate-800 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-slate-900/10 group-hover:scale-110 transition-transform">
                         <span className="material-symbols-outlined text-3xl">
@@ -367,15 +367,15 @@ const Planning: React.FC = () => {
                         </span>
                       </div>
                       <div>
-                        <h4 className="font-black text-primary dark:text-white text-lg">{exp.name}</h4>
-                        <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">
+                        <h4 className="font-black text-on-surface text-lg">{exp.name}</h4>
+                        <p className="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest">
                           {exp.dueDate} DE {monthName.toUpperCase()} • Contas Fixas
                         </p>
                       </div>
                     </div>
                     <div className="text-right">
                       <p className="font-black text-rose-500 text-xl">-{formatCurrency(exp.amount)}</p>
-                      <p className="text-[9px] text-slate-300 font-bold uppercase tracking-widest">DÉBITO AUTOMÁTICO</p>
+                      <p className="text-[9px] text-on-surface-variant opacity-60 font-bold uppercase tracking-widest">DÉBITO AUTOMÁTICO</p>
                     </div>
                   </div>
                 ))}
@@ -384,21 +384,21 @@ const Planning: React.FC = () => {
                 {(!selectedDay) && (Object.entries(budgetValues) as [string, number][]).filter(([_, val]) => val > 0).map(([catId, amount]) => {
                   const cat = CATEGORIES.find(c => c.id === catId);
                   return (
-                    <div key={catId} className="flex items-center justify-between p-6 bg-white dark:bg-slate-900 rounded-[2rem] border border-slate-100 dark:border-slate-800 shadow-sm opacity-80 group">
+                    <div key={catId} className="flex items-center justify-between p-6 bg-surface rounded-[2rem] border border-border-card shadow-sm opacity-80 group">
                       <div className="flex items-center gap-6">
                         <div className="w-16 h-16 bg-emerald-100 dark:bg-emerald-900/20 rounded-2xl flex items-center justify-center text-emerald-600 dark:text-emerald-400 group-hover:scale-110 transition-transform">
                           <span className="material-symbols-outlined text-3xl">{cat?.icon || 'category'}</span>
                         </div>
                         <div>
-                          <h4 className="font-black text-primary dark:text-white text-lg">Reserva {catId}</h4>
-                          <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">
+                          <h4 className="font-black text-on-surface text-lg">Reserva {catId}</h4>
+                          <p className="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest">
                             LIMITE MENSAL • Contas Variáveis
                           </p>
                         </div>
                       </div>
                       <div className="text-right">
                         <p className="font-black text-emerald-600 dark:text-emerald-400 text-xl">-{formatCurrency(amount)}</p>
-                        <p className="text-[9px] text-slate-300 font-bold uppercase tracking-widest">PROJETADO</p>
+                        <p className="text-[9px] text-on-surface-variant opacity-60 font-bold uppercase tracking-widest">PROJETADO</p>
                       </div>
                     </div>
                   );
@@ -445,39 +445,39 @@ const Planning: React.FC = () => {
             className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start"
           >
             <div className="lg:col-span-8 space-y-6">
-              <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 shadow-sm border border-slate-100 dark:border-slate-800">
+              <div className="bg-surface rounded-3xl p-8 shadow-sm border border-border-card">
                 <div className="flex justify-between items-center mb-8">
                   <div>
-                    <h2 className="text-2xl font-black text-primary dark:text-white">Renda Familiar</h2>
-                    <p className="text-sm text-slate-400 font-medium">Cadastre o total disponível (salários, ganhos) para o mês.</p>
+                    <h2 className="text-2xl font-black text-on-surface">Renda Familiar</h2>
+                    <p className="text-sm text-on-surface-variant font-medium">Cadastre o total disponível (salários, ganhos) para o mês.</p>
                   </div>
                 </div>
                 
-                <div className="p-6 rounded-2xl bg-primary/5 dark:bg-primary/10 border border-primary/10 dark:border-primary/20">
+                <div className="p-6 rounded-2xl bg-primary/5 border border-primary/10">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 rounded-xl bg-white dark:bg-slate-800 flex items-center justify-center text-primary dark:text-white shadow-sm">
+                    <div className="w-10 h-10 rounded-xl bg-surface flex items-center justify-center text-on-surface shadow-sm">
                       <Banknote className="w-6 h-6" />
                     </div>
-                    <span className="font-bold text-primary dark:text-white">Salário Mensal Total</span>
+                    <span className="font-bold text-on-surface">Salário Mensal Total</span>
                   </div>
                   <div className="relative">
-                    <span className="absolute left-4 top-1/2 -translate-y-1/2 font-bold text-slate-400">R$</span>
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 font-bold text-on-surface-variant/40">R$</span>
                     <input 
                       type="text"
                       value={monthlyIncome}
                       onChange={(e) => setMonthlyIncome(e.target.value)}
                       placeholder="0,00"
-                      className="w-full h-16 bg-white dark:bg-slate-800 border-none rounded-xl pl-12 pr-4 font-black text-primary dark:text-white text-2xl focus:ring-2 focus:ring-primary/10 transition-all"
+                      className="w-full h-16 bg-surface border-none rounded-xl pl-12 pr-4 font-black text-on-surface text-2xl focus:ring-2 focus:ring-primary/10 transition-all"
                     />
                   </div>
                 </div>
               </div>
 
-              <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 shadow-sm border border-slate-100 dark:border-slate-800">
+              <div className="bg-surface rounded-3xl p-8 shadow-sm border border-border-card">
                 <div className="flex justify-between items-center mb-8">
                   <div>
-                    <h2 className="text-2xl font-black text-primary dark:text-white">Limites Mensais</h2>
-                    <p className="text-sm text-slate-400 font-medium">Defina quanto sua família pode gastar por categoria.</p>
+                    <h2 className="text-2xl font-black text-on-surface">Limites Mensais</h2>
+                    <p className="text-sm text-on-surface-variant font-medium">Defina quanto sua família pode gastar por categoria.</p>
                   </div>
                   <button 
                     onClick={handleSaveBudget}
@@ -491,21 +491,21 @@ const Planning: React.FC = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {CATEGORIES.map(cat => (
-                  <div key={cat.id} className="p-6 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:border-primary/20 transition-all group">
+                  <div key={cat.id} className="p-6 rounded-2xl bg-surface-variant border border-border-card hover:border-primary/20 transition-all group">
                     <div className="flex items-center gap-3 mb-4">
-                      <div className="w-10 h-10 rounded-xl bg-white dark:bg-slate-900 flex items-center justify-center text-primary dark:text-white shadow-sm">
+                      <div className="w-10 h-10 rounded-xl bg-surface flex items-center justify-center text-on-surface shadow-sm">
                         <span className="material-symbols-outlined text-xl">{cat.icon}</span>
                       </div>
-                      <span className="font-bold text-primary dark:text-white">{cat.id}</span>
+                      <span className="font-bold text-on-surface">{cat.id}</span>
                     </div>
                     <div className="relative">
-                      <span className="absolute left-4 top-1/2 -translate-y-1/2 font-bold text-slate-400">R$</span>
+                      <span className="absolute left-4 top-1/2 -translate-y-1/2 font-bold text-on-surface-variant/40">R$</span>
                       <input 
                         type="number"
                         value={budgetValues[cat.id] || ''}
                         onChange={(e) => updateBudgetValue(cat.id, e.target.value)}
                         placeholder="0,00"
-                        className="w-full h-14 bg-white dark:bg-slate-900 border-none rounded-xl pl-12 pr-4 font-black text-primary dark:text-white text-xl focus:ring-2 focus:ring-primary/10 transition-all"
+                        className="w-full h-14 bg-surface border-none rounded-xl pl-12 pr-4 font-black text-on-surface text-xl focus:ring-2 focus:ring-primary/10 transition-all"
                       />
                     </div>
                   </div>
@@ -557,40 +557,40 @@ const Planning: React.FC = () => {
             className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start"
           >
             <div className="lg:col-span-8 space-y-6">
-              <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 shadow-sm border border-slate-100 dark:border-slate-800">
-                <h3 className="text-2xl font-black text-primary dark:text-white mb-6">Novo Gasto Fixo</h3>
+              <div className="bg-surface rounded-3xl p-8 shadow-sm border border-border-card">
+                <h3 className="text-2xl font-black text-on-surface mb-6">Novo Gasto Fixo</h3>
                 <form onSubmit={handleAddFixedExpense} className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="col-span-2 md:col-span-1">
-                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2">Nome do Gasto</label>
+                    <label className="text-[10px] font-black text-on-surface-variant uppercase tracking-widest block mb-2">Nome do Gasto</label>
                     <input 
                       type="text" 
                       value={newFixedName}
                       onChange={(e) => setNewFixedName(e.target.value)}
                       placeholder="Ex: Aluguel, Internet..."
-                      className="w-full bg-slate-50 dark:bg-slate-800 border-none h-14 rounded-xl px-4 font-bold text-primary dark:text-white focus:ring-2 focus:ring-primary/10"
+                      className="w-full bg-surface-variant border-none h-14 rounded-xl px-4 font-bold text-on-surface focus:ring-2 focus:ring-primary/10"
                       required
                     />
                   </div>
                   <div className="col-span-2 md:col-span-1">
-                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2">Valor</label>
+                    <label className="text-[10px] font-black text-on-surface-variant uppercase tracking-widest block mb-2">Valor</label>
                     <div className="relative">
-                      <span className="absolute left-4 top-1/2 -translate-y-1/2 font-bold text-slate-400">R$</span>
+                      <span className="absolute left-4 top-1/2 -translate-y-1/2 font-bold text-on-surface-variant/40">R$</span>
                       <input 
                         type="text" 
                         value={newFixedAmount}
                         onChange={(e) => setNewFixedAmount(e.target.value)}
                         placeholder="0,00"
-                        className="w-full bg-slate-50 dark:bg-slate-800 border-none h-14 rounded-xl pl-10 pr-4 font-bold text-primary dark:text-white focus:ring-2 focus:ring-primary/10"
+                        className="w-full bg-surface-variant border-none h-14 rounded-xl pl-10 pr-4 font-bold text-on-surface focus:ring-2 focus:ring-primary/10"
                         required
                       />
                     </div>
                   </div>
                   <div>
-                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2">Dia de Vencimento</label>
+                    <label className="text-[10px] font-black text-on-surface-variant uppercase tracking-widest block mb-2">Dia de Vencimento</label>
                     <select 
                       value={newFixedDay}
                       onChange={(e) => setNewFixedDay(e.target.value)}
-                      className="w-full bg-slate-50 dark:bg-slate-800 border-none h-14 rounded-xl px-4 font-bold text-primary dark:text-white focus:ring-2 focus:ring-primary/10"
+                      className="w-full bg-surface-variant border-none h-14 rounded-xl px-4 font-bold text-on-surface focus:ring-2 focus:ring-primary/10"
                     >
                       {[...Array(31)].map((_, i) => (
                         <option key={i+1} value={i+1}>Dia {i+1}</option>
@@ -598,11 +598,11 @@ const Planning: React.FC = () => {
                     </select>
                   </div>
                   <div>
-                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2">Categoria</label>
+                    <label className="text-[10px] font-black text-on-surface-variant uppercase tracking-widest block mb-2">Categoria</label>
                     <select 
                       value={newFixedCategory}
                       onChange={(e) => setNewFixedCategory(e.target.value)}
-                      className="w-full bg-slate-50 dark:bg-slate-800 border-none h-14 rounded-xl px-4 font-bold text-primary dark:text-white focus:ring-2 focus:ring-primary/10"
+                      className="w-full bg-surface-variant border-none h-14 rounded-xl px-4 font-bold text-on-surface focus:ring-2 focus:ring-primary/10"
                     >
                       {CATEGORIES.map(cat => (
                         <option key={cat.id} value={cat.id}>{cat.id}</option>
@@ -620,28 +620,28 @@ const Planning: React.FC = () => {
                 </form>
               </div>
 
-              <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 shadow-sm border border-slate-100 dark:border-slate-800">
-                <h3 className="text-xl font-black text-primary dark:text-white mb-6">Gastos Cadastrados</h3>
+              <div className="bg-surface rounded-3xl p-8 shadow-sm border border-border-card">
+                <h3 className="text-xl font-black text-on-surface mb-6">Gastos Cadastrados</h3>
                 <div className="space-y-3">
                   {fixedExpenses.length > 0 ? (
                     fixedExpenses.sort((a,b) => a.dueDate - b.dueDate).map(exp => (
-                      <div key={exp.id} className="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all">
+                      <div key={exp.id} className="flex items-center justify-between p-4 bg-surface-variant rounded-2xl border border-transparent hover:border-border-card transition-all">
                         <div className="flex items-center gap-4">
-                          <div className="w-12 h-12 bg-white dark:bg-slate-800 rounded-xl flex items-center justify-center shadow-sm text-primary dark:text-white">
+                          <div className="w-12 h-12 bg-surface rounded-xl flex items-center justify-center shadow-sm text-on-surface">
                             <span className="material-symbols-outlined text-xl">
                               {CATEGORIES.find(c => c.id === exp.category)?.icon || 'receipt_long'}
                             </span>
                           </div>
                           <div>
-                            <h4 className="font-bold text-primary dark:text-white">{exp.name}</h4>
-                            <p className="text-xs text-slate-400">Vence dia {exp.dueDate} • {exp.category}</p>
+                            <h4 className="font-bold text-on-surface">{exp.name}</h4>
+                            <p className="text-xs text-on-surface-variant">Vence dia {exp.dueDate} • {exp.category}</p>
                           </div>
                         </div>
                         <div className="flex items-center gap-6">
-                          <p className="font-bold text-primary dark:text-white text-lg">{formatCurrency(exp.amount)}</p>
+                          <p className="font-bold text-on-surface text-lg">{formatCurrency(exp.amount)}</p>
                           <button 
                             onClick={() => handleDeleteFixedExpense(exp.id)}
-                            className="p-2 text-slate-300 hover:text-red-500 transition-colors"
+                            className="p-2 text-on-surface-variant/40 hover:text-red-500 transition-colors"
                           >
                             <Trash2 className="w-5 h-5" />
                           </button>
@@ -650,7 +650,7 @@ const Planning: React.FC = () => {
                     ))
                   ) : (
                     <div className="text-center py-10">
-                      <p className="text-slate-400 font-medium">Nenhum gasto fixo cadastrado.</p>
+                      <p className="text-on-surface-variant font-medium">Nenhum gasto fixo cadastrado.</p>
                     </div>
                   )}
                 </div>

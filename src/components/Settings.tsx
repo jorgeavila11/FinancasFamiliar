@@ -85,7 +85,7 @@ const Settings: React.FC = () => {
       <div className="flex flex-col md:flex-row gap-8">
         {/* Sidebar */}
         <div className="w-full md:w-64 space-y-2">
-          <h2 className="text-2xl font-black text-[#0A192F] dark:text-white mb-6 px-4">Configurações</h2>
+          <h2 className="text-2xl font-black text-on-surface mb-6 px-4">Configurações</h2>
           {sections.map((section) => (
             <button
               key={section.id}
@@ -93,12 +93,12 @@ const Settings: React.FC = () => {
               className={cn(
                 "w-full flex items-center justify-between px-4 py-3 rounded-2xl transition-all group",
                 activeSection === section.id 
-                  ? "bg-primary text-white shadow-lg shadow-primary/20" 
-                  : "text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800"
+                  ? "bg-primary text-on-primary shadow-lg shadow-primary/20" 
+                  : "text-on-surface-variant hover:bg-surface-variant"
               )}
             >
               <div className="flex items-center gap-3">
-                <section.icon className={cn("w-5 h-5", activeSection === section.id ? "text-white" : "text-slate-400 group-hover:text-primary dark:group-hover:text-white")} />
+                <section.icon className={cn("w-5 h-5", activeSection === section.id ? "text-on-primary" : "text-on-surface-variant group-hover:text-primary")} />
                 <span className="font-bold text-sm">{section.label}</span>
               </div>
               <ChevronRight className={cn("w-4 h-4 opacity-50", activeSection === section.id ? "block" : "hidden group-hover:block")} />
@@ -122,18 +122,18 @@ const Settings: React.FC = () => {
             key={activeSection}
             initial={{ opacity: 0, x: 10 }}
             animate={{ opacity: 1, x: 0 }}
-            className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 border border-slate-100 dark:border-slate-800 shadow-sm"
+            className="bg-surface rounded-[2.5rem] p-8 border border-border-card shadow-sm"
           >
             {activeSection === 'profile' && (
               <div className="space-y-8">
                 <div>
-                  <h3 className="text-xl font-black text-[#0A192F] dark:text-white mb-1">Meu Perfil</h3>
-                  <p className="text-sm text-slate-400 dark:text-slate-300 font-medium">Gerencie suas informações pessoais.</p>
+                  <h3 className="text-xl font-black text-on-surface mb-1">Meu Perfil</h3>
+                  <p className="text-sm text-on-surface-variant font-medium">Gerencie suas informações pessoais.</p>
                 </div>
 
                 <div className="flex flex-col md:flex-row gap-8 items-center md:items-start">
                   <div className="relative group">
-                    <div className="w-32 h-32 rounded-[2rem] overflow-hidden border-4 border-slate-50 shadow-inner">
+                    <div className="w-32 h-32 rounded-[2rem] overflow-hidden border-4 border-surface-variant shadow-inner">
                       {profile?.photoURL ? (
                         <img src={profile.photoURL} alt="Avatar" className="w-full h-full object-cover" />
                       ) : (
@@ -142,41 +142,42 @@ const Settings: React.FC = () => {
                         </div>
                       )}
                     </div>
-                    <button className="absolute -bottom-2 -right-2 bg-primary text-white p-2 rounded-xl shadow-lg hover:scale-110 transition-transform">
+                    <button className="absolute -bottom-2 -right-2 bg-primary text-on-primary p-2 rounded-xl shadow-lg hover:scale-110 transition-transform">
                       <Save className="w-4 h-4" />
                     </button>
                   </div>
 
                   <div className="flex-1 w-full space-y-6">
                     <div className="space-y-2">
-                      <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest px-1">Nome de Exibição</label>
+                      <label className="text-[10px] font-black text-on-surface-variant uppercase tracking-widest px-1">Nome de Exibição</label>
                       <input 
                         type="text"
                         value={displayName}
                         onChange={(e) => setDisplayName(e.target.value)}
-                        className="w-full h-14 bg-white dark:bg-slate-800 rounded-2xl px-6 font-bold text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                        className="w-full h-14 bg-surface rounded-2xl px-6 font-bold text-on-surface border border-border-card focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                         placeholder="Seu nome"
                       />
                     </div>
                     <div className="space-y-2">
-                      <label className="text-[10px] font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest px-1">E-mail (Não editável)</label>
-                      <div className="w-full h-14 bg-slate-50 dark:bg-slate-900 rounded-2xl px-6 flex items-center font-bold text-slate-400 border border-slate-200 dark:border-slate-800">
+                      <label className="text-[10px] font-black text-on-surface-variant uppercase tracking-widest px-1">E-mail (Não editável)</label>
+                      <div className="w-full h-14 bg-surface-variant rounded-2xl px-6 flex items-center font-bold text-on-surface-variant border border-border-card">
                         {profile?.email}
                       </div>
                     </div>
                     <div className="space-y-2">
-                      <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest px-1">Chave API Gemini (Para Scanner)</label>
+                      <label className="text-[10px] font-black text-on-surface-variant uppercase tracking-widest px-1">Chave API Gemini (Para Scanner)</label>
                       <input 
                         type="password"
                         value={geminiApiKey}
                         onChange={(e) => setGeminiApiKey(e.target.value)}
-                        className="w-full h-14 bg-white dark:bg-slate-800 rounded-2xl px-6 font-bold text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                        className="w-full h-14 bg-surface rounded-2xl px-6 font-bold text-on-surface border border-border-card focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                         placeholder="AIzaSy..."
                       />
-                      <p className="text-[10px] text-slate-500 dark:text-slate-400 px-1 leading-tight">
+                      <p className="text-[10px] text-on-surface-variant px-1 leading-tight">
                         Obtenha sua chave gratuita em <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Google AI Studio</a>. Isso evita o uso dos limites do sistema.
                       </p>
                     </div>
+
                     <button 
                       onClick={handleSaveProfile}
                       disabled={isSaving}
@@ -204,8 +205,8 @@ const Settings: React.FC = () => {
             {activeSection === 'appearance' && (
               <div className="space-y-8">
                 <div>
-                  <h3 className="text-xl font-black text-[#0A192F] dark:text-white mb-1">Aparência do Aplicativo</h3>
-                  <p className="text-sm text-slate-400 dark:text-slate-300 font-medium">Escolha como o aplicativo deve ser exibido para você.</p>
+                  <h3 className="text-xl font-black text-on-surface mb-1">Aparência do Aplicativo</h3>
+                  <p className="text-sm text-on-surface-variant font-medium">Escolha como o aplicativo deve ser exibido para você.</p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -220,21 +221,21 @@ const Settings: React.FC = () => {
                       className={cn(
                         "flex flex-col items-center gap-4 p-6 rounded-3xl border-2 transition-all text-center",
                         theme === t.id 
-                          ? "border-primary bg-primary/5 dark:bg-primary/10" 
-                          : "border-slate-100 dark:border-slate-800 hover:border-slate-200"
+                          ? "border-primary bg-primary/5" 
+                          : "border-border-card hover:border-slate-200 dark:hover:border-slate-700"
                       )}
                     >
                       <div className={cn(
                         "w-12 h-12 rounded-full flex items-center justify-center transition-colors",
-                        theme === t.id ? "bg-primary text-on-primary" : "bg-slate-100 dark:bg-slate-800 text-slate-400"
+                        theme === t.id ? "bg-primary text-on-primary" : "bg-surface-variant text-on-surface-variant"
                       )}>
                         <t.icon className="w-6 h-6" />
                       </div>
                       <div>
-                        <p className={cn("font-bold text-sm", theme === t.id ? "text-primary dark:text-white" : "text-slate-600 dark:text-slate-400")}>
+                        <p className={cn("font-bold text-sm", theme === t.id ? "text-primary" : "text-on-surface-variant")}>
                           {t.label}
                         </p>
-                        <p className="text-[10px] text-slate-400 mt-1">{t.desc}</p>
+                        <p className="text-[10px] text-on-surface-variant mt-1">{t.desc}</p>
                       </div>
                     </button>
                   ))}
@@ -245,46 +246,46 @@ const Settings: React.FC = () => {
             {activeSection === 'family' && (
               <div className="space-y-8">
                 <div>
-                  <h3 className="text-xl font-black text-[#0A192F] dark:text-white mb-1">Meu Orçamento</h3>
-                  <p className="text-sm text-slate-400 dark:text-slate-300 font-medium">Configurações globais do seu orçamento.</p>
+                  <h3 className="text-xl font-black text-on-surface mb-1">Meu Orçamento</h3>
+                  <p className="text-sm text-on-surface-variant font-medium">Configurações globais do seu orçamento.</p>
                 </div>
 
                 <div className="space-y-6">
                   <div className="space-y-2">
-                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest px-1">Nome do Agrupamento (SaaS)</label>
+                    <label className="text-[10px] font-black text-on-surface-variant uppercase tracking-widest px-1">Nome do Agrupamento (SaaS)</label>
                     <input 
                       type="text"
                       value={householdName}
                       onChange={(e) => setHouseholdName(e.target.value)}
-                      className="w-full h-14 bg-white dark:bg-slate-800 rounded-2xl px-6 font-bold text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                      className="w-full h-14 bg-surface rounded-2xl px-6 font-bold text-on-surface border border-border-card focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                       placeholder="Ex: Meu Orçamento"
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest px-1">Renda Total Projetada (Mensal)</label>
+                    <label className="text-[10px] font-black text-on-surface-variant uppercase tracking-widest px-1">Renda Total Projetada (Mensal)</label>
                     <div className="relative">
-                      <span className="absolute left-6 top-1/2 -translate-y-1/2 font-bold text-slate-900 dark:text-white">R$</span>
+                      <span className="absolute left-6 top-1/2 -translate-y-1/2 font-bold text-on-surface">R$</span>
                       <input 
                         type="text"
                         value={monthlyIncome}
                         onChange={(e) => setMonthlyIncome(e.target.value)}
-                        className="w-full h-14 bg-white dark:bg-slate-800 rounded-2xl pl-14 pr-6 font-bold text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                        className="w-full h-14 bg-surface rounded-2xl pl-14 pr-6 font-bold text-on-surface border border-border-card focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                         placeholder="14.000,00"
                       />
                     </div>
                   </div>
 
-                  <div className="p-6 bg-primary/5 rounded-3xl border border-primary/10">
+                  <div className="p-6 bg-primary/5 rounded-3xl border border-border-card">
                     <h4 className="font-bold text-primary mb-2 flex items-center gap-2">
                        Acesso Individual
                     </h4>
-                    <p className="text-xs text-slate-500">No momento, o aplicativo é de uso pessoal. No futuro, você poderá convidar membros da família.</p>
+                    <p className="text-xs text-on-surface-variant">No momento, o aplicativo é de uso pessoal. No futuro, você poderá convidar membros da família.</p>
                   </div>
 
                   <button 
                     onClick={handleSaveHousehold}
                     disabled={isSaving}
-                    className="bg-primary text-white h-14 px-8 rounded-2xl font-bold hover:scale-[1.02] active:scale-95 transition-all w-full md:w-auto shadow-lg shadow-primary/20 flex items-center justify-center gap-2"
+                    className="bg-primary text-on-primary h-14 px-8 rounded-2xl font-bold hover:scale-[1.02] active:scale-95 transition-all w-full md:w-auto shadow-lg shadow-primary/20 flex items-center justify-center gap-2"
                   >
                     {isSaving ? 'Salvando...' : 'Salvar Configurações'}
                   </button>

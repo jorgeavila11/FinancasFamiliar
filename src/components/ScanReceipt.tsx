@@ -121,7 +121,7 @@ const ScanReceipt: React.FC<ScanReceiptProps> = ({ onComplete }) => {
             className="flex flex-col gap-6"
           >
             <div className="flex items-center justify-between">
-              <h2 className="font-headline-md text-3xl font-bold text-primary">Escanear Recibo</h2>
+              <h2 className="font-headline-md text-3xl font-bold text-on-surface">Escanear Recibo</h2>
               <span className="text-[10px] font-bold text-primary bg-primary/10 px-4 py-2 rounded-full uppercase tracking-widest">Passo 1 de 2</span>
             </div>
 
@@ -216,15 +216,15 @@ const ScanReceipt: React.FC<ScanReceiptProps> = ({ onComplete }) => {
             className="flex flex-col gap-6"
           >
             <div className="flex items-center justify-between">
-              <h2 className="font-headline-md text-3xl font-bold text-primary">Revisar Dados</h2>
+              <h2 className="font-headline-md text-3xl font-bold text-on-surface">Revisar Dados</h2>
               <div className="flex items-center gap-2 text-emerald-600 font-black tracking-widest uppercase text-[10px]">
                 <CheckCircle className="w-4 h-4" /> Verificado por IA
               </div>
             </div>
 
-            <div className="bg-white p-8 rounded-3xl shadow-xl border border-slate-100 space-y-8">
-              <div className="flex items-start gap-4 border-b border-slate-50 pb-8 overflow-hidden">
-                <div className="w-14 h-14 shrink-0 rounded-2xl bg-slate-50 flex items-center justify-center text-primary shadow-inner">
+            <div className="bg-surface p-8 rounded-3xl shadow-xl border border-border-card space-y-8">
+              <div className="flex items-start gap-4 border-b border-border-card pb-8 overflow-hidden">
+                <div className="w-14 h-14 shrink-0 rounded-2xl bg-surface-variant flex items-center justify-center text-on-surface shadow-inner">
                   <span className="material-symbols-outlined text-[32px] leading-none">
                     {extractedData?.category === 'Lazer' ? 'local_cafe' : 
                      extractedData?.category === 'Alimentação' ? 'shopping_basket' : 
@@ -236,23 +236,23 @@ const ScanReceipt: React.FC<ScanReceiptProps> = ({ onComplete }) => {
                   </span>
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-[10px] font-black text-slate-300 uppercase tracking-[0.2em] mb-1 truncate">Estabelecimento</p>
-                  <h3 className="font-headline-md text-xl md:text-2xl font-extrabold text-primary break-words line-clamp-2 leading-tight">
+                  <p className="text-[10px] font-black text-on-surface-variant uppercase tracking-[0.2em] mb-1 truncate">Estabelecimento</p>
+                  <h3 className="font-headline-md text-xl md:text-2xl font-extrabold text-on-surface break-words line-clamp-2 leading-tight">
                     {extractedData?.merchant || '---'}
                   </h3>
                 </div>
                 <div className="text-right shrink-0">
-                  <p className="text-[10px] font-black text-slate-300 uppercase tracking-[0.2em] mb-1">Valor</p>
-                  <p className="text-2xl md:text-4xl font-black text-primary font-manrope whitespace-nowrap">
+                  <p className="text-[10px] font-black text-on-surface-variant uppercase tracking-[0.2em] mb-1">Valor</p>
+                  <p className="text-2xl md:text-4xl font-black text-on-surface font-manrope whitespace-nowrap">
                     {formatCurrency(extractedData?.amount || 0)}
                   </p>
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
-                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 group hover:border-primary/20 transition-all cursor-pointer">
-                  <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest block mb-1">Data</label>
-                  <div className="flex items-center gap-2 font-bold text-slate-700 whitespace-nowrap">
+                <div className="bg-surface-variant p-6 rounded-2xl border border-border-card group hover:border-primary/20 transition-all cursor-pointer">
+                  <label className="text-[9px] font-black text-on-surface-variant uppercase tracking-widest block mb-1">Data</label>
+                  <div className="flex items-center gap-2 font-bold text-on-surface whitespace-nowrap">
                     <span className="material-symbols-outlined text-sm leading-none opacity-50">calendar_today</span>
                     {extractedData?.date ? (() => {
                       const d = new Date(extractedData.date);
@@ -262,20 +262,20 @@ const ScanReceipt: React.FC<ScanReceiptProps> = ({ onComplete }) => {
                     })() : '---'}
                   </div>
                 </div>
-                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 group hover:border-primary/20 transition-all cursor-pointer">
-                  <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest block mb-1">Categoria</label>
-                  <div className="flex items-center gap-2 font-bold text-slate-700">
+                <div className="bg-surface-variant p-6 rounded-2xl border border-border-card group hover:border-primary/20 transition-all cursor-pointer">
+                  <label className="text-[9px] font-black text-on-surface-variant uppercase tracking-widest block mb-1">Categoria</label>
+                  <div className="flex items-center gap-2 font-bold text-on-surface">
                     <span className="material-symbols-outlined text-sm opacity-50">category</span>
                     {extractedData?.category || 'Lazer'}
                   </div>
                 </div>
-                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 col-span-2">
-                  <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest block mb-2">Compartilhado Com</label>
+                <div className="bg-surface-variant p-6 rounded-2xl border border-border-card col-span-2">
+                  <label className="text-[9px] font-black text-on-surface-variant uppercase tracking-widest block mb-2">Compartilhado Com</label>
                   <div className="flex -space-x-2">
                     {[1, 2, 3].map(i => (
-                      <img key={i} className="w-8 h-8 rounded-full border-2 border-white object-cover" src={`https://i.pravatar.cc/150?u=${i}`} alt="user" />
+                      <img key={i} className="w-8 h-8 rounded-full border-2 border-surface object-cover" src={`https://i.pravatar.cc/150?u=${i}`} alt="user" />
                     ))}
-                    <div className="w-8 h-8 rounded-full border-2 border-white bg-slate-200 flex items-center justify-center text-[10px] font-black text-slate-500">+2</div>
+                    <div className="w-8 h-8 rounded-full border-2 border-surface bg-surface-variant flex items-center justify-center text-[10px] font-black text-on-surface-variant">+2</div>
                   </div>
                 </div>
               </div>
@@ -283,13 +283,13 @@ const ScanReceipt: React.FC<ScanReceiptProps> = ({ onComplete }) => {
               <div className="flex flex-col gap-3 pt-4">
                 <button 
                   onClick={handleConfirm}
-                  className="h-14 w-full bg-primary text-white rounded-2xl font-black text-sm uppercase tracking-widest hover:opacity-95 active:scale-95 transition-all flex items-center justify-center gap-2 shadow-xl shadow-primary/20"
+                  className="h-14 w-full bg-primary text-on-primary rounded-2xl font-black text-sm uppercase tracking-widest hover:opacity-95 active:scale-95 transition-all flex items-center justify-center gap-2 shadow-xl shadow-primary/20"
                 >
                   <Save className="w-5 h-5 opacity-50" /> Confirmar Despesa
                 </button>
                 <button 
                   onClick={() => setStep(1)}
-                  className="h-12 w-full bg-slate-50 text-slate-400 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-slate-100 transition-all"
+                  className="h-12 w-full bg-surface-variant text-on-surface-variant rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-surface transition-all"
                 >
                   Tirar Nova Foto
                 </button>

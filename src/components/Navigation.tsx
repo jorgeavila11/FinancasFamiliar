@@ -17,7 +17,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeTab, setActiveTab }) => {
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-t border-slate-100 dark:border-slate-800 shadow-[0_-4px_24px_rgba(10,25,47,0.04)] h-20 rounded-t-2xl grid grid-cols-5 items-center px-2 pb-safe">
+    <nav className="fixed bottom-0 left-0 w-full z-50 bg-surface/80 backdrop-blur-md border-t border-border-card shadow-[0_-4px_24px_rgba(10,25,47,0.04)] h-20 rounded-t-2xl grid grid-cols-5 items-center px-2 pb-safe">
       {tabs.map((tab) => {
         const Icon = tab.icon;
         const isActive = activeTab === tab.id;
@@ -35,7 +35,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeTab, setActiveTab }) => {
               )}>
                 <Icon className="w-7 h-7" />
               </div>
-              <span className="font-manrope text-[10px] font-bold uppercase tracking-wider mt-1 text-slate-900 dark:text-white">
+              <span className="font-manrope text-[10px] font-bold uppercase tracking-wider mt-1 text-on-surface">
                 {tab.label}
               </span>
             </button>
@@ -50,7 +50,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeTab, setActiveTab }) => {
           >
             <div className={cn(
               "flex flex-col items-center gap-1 transition-all",
-              isActive ? "text-primary dark:text-white scale-110" : "text-slate-400"
+              isActive ? "text-primary scale-110" : "text-on-surface-variant opacity-60"
             )}>
               <Icon className={cn("w-6 h-6", isActive && "fill-current")} />
               <span className="font-manrope text-[10px] font-medium uppercase tracking-wider">
@@ -58,7 +58,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeTab, setActiveTab }) => {
               </span>
             </div>
             {isActive && (
-              <div className="absolute bottom-2 w-1 h-1 bg-primary dark:bg-white rounded-full"></div>
+              <div className="absolute bottom-2 w-1 h-1 bg-primary rounded-full"></div>
             )}
           </button>
         );

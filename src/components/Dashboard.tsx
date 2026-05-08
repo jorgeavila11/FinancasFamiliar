@@ -118,8 +118,8 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
     };
 
     return (
-      <div className="flex flex-col items-center justify-center p-12 text-center bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 min-h-[400px]">
-        <h2 className="text-2xl font-bold mb-4 dark:text-white">Bem-vindo ao Family Finance!</h2>
+      <div className="flex flex-col items-center justify-center p-12 text-center bg-surface rounded-2xl shadow-sm border border-border-card min-h-[400px]">
+        <h2 className="text-2xl font-bold mb-4 text-on-surface">Bem-vindo ao Family Finance!</h2>
         <p className="text-slate-500 dark:text-slate-400 mb-8 max-w-sm">Crie um grupo familiar para começar a gerenciar metas compartilhadas, rastrear despesas e planejar o futuro da sua família juntos.</p>
         <button 
           onClick={handleCreateHousehold}
@@ -156,39 +156,39 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
     <div className="space-y-8 pb-12">
       <section className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
         <div className="flex-1">
-          <h2 className="font-headline-md text-3xl font-black text-[#0A192F] dark:text-white">Meu Dashboard</h2>
-          <p className="font-body-md text-slate-500 dark:text-slate-400 font-medium mt-1">Gerencie seu orçamento e gastos mensais.</p>
+          <h2 className="font-headline-md text-3xl font-black text-on-surface">Meu Dashboard</h2>
+          <p className="font-body-md text-on-surface-variant font-medium mt-1">Gerencie seu orçamento e gastos mensais.</p>
         </div>
         
-        <div className="flex items-center gap-3 bg-white dark:bg-slate-900 p-2 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
-          <div className="flex bg-slate-50 dark:bg-slate-800 rounded-xl p-1 gap-1 border border-slate-100 dark:border-slate-700">
+        <div className="flex items-center gap-3 bg-surface p-2 rounded-2xl shadow-sm border border-border-card">
+          <div className="flex bg-surface-variant rounded-xl p-1 gap-1 border border-border-card">
             <button 
               onClick={() => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1))}
-              className="w-10 h-10 flex items-center justify-center hover:bg-white dark:hover:bg-slate-700 rounded-lg transition-all text-slate-400 hover:text-primary dark:hover:text-white"
+              className="w-10 h-10 flex items-center justify-center hover:bg-surface rounded-lg transition-all text-slate-400 hover:text-primary"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             <div className="px-4 flex items-center min-w-[140px] justify-center">
-              <span className="font-bold text-primary dark:text-white capitalize text-sm">
+              <span className="font-bold text-on-surface capitalize text-sm">
                 {currentDate.toLocaleString('pt-BR', { month: 'long', year: 'numeric' })}
               </span>
             </div>
             <button 
               onClick={() => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1))}
-              className="w-10 h-10 flex items-center justify-center hover:bg-white dark:hover:bg-slate-700 rounded-lg transition-all text-slate-400 hover:text-primary dark:hover:text-white"
+              className="w-10 h-10 flex items-center justify-center hover:bg-surface rounded-lg transition-all text-slate-400 hover:text-primary"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
           </div>
           
-          <div className="h-10 w-[1px] bg-slate-100 dark:bg-slate-800 mx-1" />
+          <div className="h-10 w-[1px] bg-border-card mx-1" />
           
           <div 
             onClick={() => onNavigate?.('planning')}
-            className="text-right px-2 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl py-1 transition-colors"
+            className="text-right px-2 cursor-pointer hover:bg-surface-variant rounded-xl py-1 transition-colors"
           >
-            <p className="text-[9px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest leading-tight">Renda Mensal</p>
-            <p className="font-bold text-primary dark:text-white text-sm">{formatCurrency(household?.monthlyIncome || 0)}</p>
+            <p className="text-[9px] font-black text-on-surface-variant uppercase tracking-widest leading-tight">Renda Mensal</p>
+            <p className="font-bold text-primary text-sm">{formatCurrency(household?.monthlyIncome || 0)}</p>
           </div>
         </div>
       </section>
@@ -198,14 +198,14 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
         <motion.div 
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="md:col-span-8 bg-white dark:bg-slate-900 rounded-2xl p-8 shadow-sm border border-slate-100 dark:border-slate-800 relative overflow-hidden flex flex-col justify-between min-h-[240px]"
+          className="md:col-span-8 bg-surface rounded-2xl p-8 shadow-sm border border-border-card relative overflow-hidden flex flex-col justify-between min-h-[240px]"
         >
           <div className="relative z-10 w-full">
-            <span className="font-label-caps text-[10px] text-slate-400 uppercase tracking-widest block mb-1">Saldo Remanescente</span>
+            <span className="font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest block mb-1">Saldo Remanescente</span>
             <div className="flex items-end gap-3 mb-6">
               <span className={cn(
                 "font-display-lg text-4xl font-bold",
-                remainingBalance < 0 ? "text-rose-500" : "text-primary dark:text-white"
+                remainingBalance < 0 ? "text-rose-500" : "text-on-surface"
               )}>
                 {formatCurrency(remainingBalance)}
               </span>
@@ -218,7 +218,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
             </div>
             
             <div className="mb-8">
-              <div className="w-full bg-slate-100 h-4 rounded-full overflow-hidden mb-2 relative">
+              <div className="w-full bg-surface-variant h-4 rounded-full overflow-hidden mb-2 relative">
                 {/* Fixed Expenses part */}
                 <motion.div 
                   initial={{ width: 0 }}
@@ -235,7 +235,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
                   )}
                 />
               </div>
-              <div className="flex justify-between text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+              <div className="flex justify-between text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">
                 <div className="flex gap-4">
                   <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-blue-500"></span> Fixos: {formatCurrency(totalFixedExpenses)}</span>
                   <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-emerald-500"></span> Variáveis: {formatCurrency(totalVariableExpenses)}</span>
@@ -267,7 +267,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
           onClick={() => onNavigate?.('planning')}
-          className="md:col-span-4 bg-white dark:bg-slate-900 rounded-2xl p-8 shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col justify-between cursor-pointer hover:shadow-md transition-shadow group active:scale-[0.98]"
+          className="md:col-span-4 bg-surface rounded-2xl p-8 shadow-sm border border-border-card flex flex-col justify-between cursor-pointer hover:shadow-md transition-shadow group active:scale-[0.98]"
         >
           <div>
             <div className="flex justify-between items-start mb-6">
@@ -276,14 +276,14 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
               </div>
               <span className="font-label-caps text-[10px] text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/20 px-3 py-1 rounded-full font-bold">75%</span>
             </div>
-            <h3 className="font-headline-md text-xl text-on-surface dark:text-white mb-1">Minha Meta</h3>
-            <p className="font-body-md text-slate-400 dark:text-slate-500 text-sm mb-6">Meta: R$ 45.000</p>
+            <h3 className="font-headline-md text-xl text-on-surface mb-1">Minha Meta</h3>
+            <p className="font-body-md text-on-surface-variant text-sm mb-6">Meta: R$ 45.000</p>
           </div>
           <div>
-            <div className="w-full bg-slate-100 h-2 rounded-full mb-3 overflow-hidden">
+            <div className="w-full bg-surface-variant h-2 rounded-full mb-3 overflow-hidden">
               <div className="bg-emerald-500 h-full rounded-full transition-all duration-1000" style={{ width: '75%' }}></div>
             </div>
-            <div className="flex justify-between font-label-caps text-[9px] text-slate-400 font-bold uppercase tracking-widest">
+            <div className="flex justify-between font-label-caps text-[9px] text-on-surface-variant font-bold uppercase tracking-widest">
               <span>R$ 33.750 SALVOS</span>
               <span>R$ 11.250 RESTANTES</span>
             </div>
@@ -295,12 +295,12 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="md:col-span-12 bg-white dark:bg-slate-900 rounded-2xl p-8 shadow-sm border border-slate-100 dark:border-slate-800"
+          className="md:col-span-12 bg-surface rounded-2xl p-8 shadow-sm border border-border-card"
         >
           <div className="flex justify-between items-center mb-8">
-            <h3 className="font-headline-md text-xl text-on-surface dark:text-white">Compromissos Financeiros</h3>
+            <h3 className="font-headline-md text-xl text-on-surface">Compromissos Financeiros</h3>
             <div className="flex gap-4 items-center">
-              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Fixos + Assinaturas</span>
+              <span className="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Fixos + Assinaturas</span>
               <button 
                 onClick={() => onNavigate?.('planning')}
                 className="text-blue-600 font-label-caps text-[10px] font-bold tracking-widest hover:underline uppercase"
@@ -330,23 +330,23 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
                   <div 
                     key={`${item.type}-${item.id}`} 
                     onClick={() => onNavigate?.('planning')}
-                    className="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all cursor-pointer group active:scale-95"
+                    className="flex items-center justify-between p-4 bg-surface-variant rounded-2xl border border-transparent hover:border-border-card transition-all cursor-pointer group active:scale-95"
                   >
                     <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 bg-white dark:bg-slate-800 rounded-xl flex items-center justify-center shadow-sm text-primary dark:text-white group-hover:scale-110 transition-transform">
+                      <div className="w-12 h-12 bg-surface rounded-xl flex items-center justify-center shadow-sm text-on-surface group-hover:scale-110 transition-transform">
                         <span className="material-symbols-outlined text-xl">
                           {isFixed ? (cat?.icon || 'event_repeat') : 'subscriptions'}
                         </span>
                       </div>
                       <div>
-                        <h4 className="font-bold text-on-surface dark:text-white truncate max-w-[120px]">{item.name}</h4>
-                        <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">
+                        <h4 className="font-bold text-on-surface truncate max-w-[120px]">{item.name}</h4>
+                        <p className="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest">
                           {isFixed ? `Dia ${(item as any).dueDate}` : 'Mensal'}
                         </p>
                       </div>
                     </div>
                     <div className="text-right">
-                      <p className="font-black text-primary dark:text-white">{formatCurrency(item.amount)}</p>
+                      <p className="font-black text-on-surface">{formatCurrency(item.amount)}</p>
                       <span className={cn(
                         "text-[8px] font-black uppercase tracking-tighter px-2 py-0.5 rounded-full",
                         isFixed ? "bg-blue-100 text-blue-700" : "bg-purple-100 text-purple-700"
@@ -360,11 +360,11 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
             ) : (
               // Empty state
               <div className="col-span-full py-12 text-center">
-                <div className="w-16 h-16 bg-slate-50 dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-4 text-slate-300 dark:text-slate-600">
+                <div className="w-16 h-16 bg-surface-variant rounded-full flex items-center justify-center mx-auto mb-4 text-on-surface-variant opacity-50">
                   <Calendar className="w-8 h-8" />
                 </div>
-                <p className="text-slate-400 dark:text-slate-500 font-medium">Nenhum compromisso fixo ou assinatura encontrada.</p>
-                <p className="text-[10px] text-slate-300 dark:text-slate-600 uppercase font-black tracking-widest mt-1">Cadastre em Planejamento</p>
+                <p className="text-on-surface-variant font-medium">Nenhum compromisso fixo ou assinatura encontrada.</p>
+                <p className="text-[10px] text-on-surface-variant uppercase font-black tracking-widest mt-1">Cadastre em Planejamento</p>
               </div>
             )}
           </div>
@@ -386,18 +386,18 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
               <div 
                 key={cat.id} 
                 onClick={() => onNavigate?.('expenses')}
-                className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all cursor-pointer group active:scale-95"
+                className="bg-surface p-6 rounded-2xl border border-border-card shadow-sm hover:shadow-md transition-all cursor-pointer group active:scale-95"
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-400 group-hover:bg-primary/10 group-hover:text-primary dark:group-hover:text-white transition-colors">
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-surface-variant text-on-surface-variant group-hover:bg-primary/10 group-hover:text-primary transition-colors">
                     <span className="material-symbols-outlined text-lg">{cat.icon}</span>
                   </div>
                   <div>
-                    <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest leading-none mb-1">{cat.id}</p>
-                    <p className="font-bold text-sm text-primary dark:text-white">{formatCurrency(spent)}</p>
+                    <p className="text-[9px] font-black text-on-surface-variant uppercase tracking-widest leading-none mb-1">{cat.id}</p>
+                    <p className="font-bold text-sm text-on-surface">{formatCurrency(spent)}</p>
                   </div>
                 </div>
-                <div className="w-full bg-slate-50 h-1.5 rounded-full overflow-hidden">
+                <div className="w-full bg-surface-variant h-1.5 rounded-full overflow-hidden">
                   <motion.div 
                     initial={{ width: 0 }}
                     animate={{ width: `${Math.min(percentage, 100)}%` }}
