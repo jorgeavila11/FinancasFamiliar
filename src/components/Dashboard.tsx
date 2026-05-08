@@ -156,8 +156,8 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
     <div className="space-y-8 pb-12">
       <section className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
         <div className="flex-1">
-          <h2 className="font-headline-md text-3xl font-black text-primary">Meu Dashboard</h2>
-          <p className="font-body-md text-slate-500 font-medium mt-1">Gerencie seu orçamento e gastos mensais.</p>
+          <h2 className="font-headline-md text-3xl font-black text-primary dark:text-white">Meu Dashboard</h2>
+          <p className="font-body-md text-slate-500 dark:text-slate-400 font-medium mt-1">Gerencie seu orçamento e gastos mensais.</p>
         </div>
         
         <div className="flex items-center gap-3 bg-white p-2 rounded-2xl shadow-sm border border-slate-100">
@@ -198,14 +198,14 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
         <motion.div 
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="md:col-span-8 bg-white rounded-2xl p-8 shadow-sm border border-slate-100 relative overflow-hidden flex flex-col justify-between min-h-[240px]"
+          className="md:col-span-8 bg-white dark:bg-slate-900 rounded-2xl p-8 shadow-sm border border-slate-100 dark:border-slate-800 relative overflow-hidden flex flex-col justify-between min-h-[240px]"
         >
           <div className="relative z-10 w-full">
             <span className="font-label-caps text-[10px] text-slate-400 uppercase tracking-widest block mb-1">Saldo Remanescente</span>
             <div className="flex items-end gap-3 mb-6">
               <span className={cn(
                 "font-display-lg text-4xl font-bold",
-                remainingBalance < 0 ? "text-rose-500" : "text-primary"
+                remainingBalance < 0 ? "text-rose-500" : "text-primary dark:text-white"
               )}>
                 {formatCurrency(remainingBalance)}
               </span>
@@ -267,17 +267,17 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
           onClick={() => onNavigate?.('planning')}
-          className="md:col-span-4 bg-white rounded-2xl p-8 shadow-sm border border-slate-100 flex flex-col justify-between cursor-pointer hover:shadow-md transition-shadow group active:scale-[0.98]"
+          className="md:col-span-4 bg-white dark:bg-slate-900 rounded-2xl p-8 shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col justify-between cursor-pointer hover:shadow-md transition-shadow group active:scale-[0.98]"
         >
           <div>
             <div className="flex justify-between items-start mb-6">
-              <div className="bg-blue-50 text-blue-600 p-3 rounded-xl shadow-sm group-hover:scale-110 transition-transform">
+              <div className="bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 p-3 rounded-xl shadow-sm group-hover:scale-110 transition-transform">
                 <Car className="w-6 h-6" />
               </div>
-              <span className="font-label-caps text-[10px] text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full font-bold">75%</span>
+              <span className="font-label-caps text-[10px] text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/20 px-3 py-1 rounded-full font-bold">75%</span>
             </div>
-            <h3 className="font-headline-md text-xl text-on-surface mb-1">Minha Meta</h3>
-            <p className="font-body-md text-slate-400 text-sm mb-6">Meta: R$ 45.000</p>
+            <h3 className="font-headline-md text-xl text-on-surface dark:text-white mb-1">Minha Meta</h3>
+            <p className="font-body-md text-slate-400 dark:text-slate-500 text-sm mb-6">Meta: R$ 45.000</p>
           </div>
           <div>
             <div className="w-full bg-slate-100 h-2 rounded-full mb-3 overflow-hidden">
@@ -295,10 +295,10 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="md:col-span-12 bg-white rounded-2xl p-8 shadow-sm border border-slate-100"
+          className="md:col-span-12 bg-white dark:bg-slate-900 rounded-2xl p-8 shadow-sm border border-slate-100 dark:border-slate-800"
         >
           <div className="flex justify-between items-center mb-8">
-            <h3 className="font-headline-md text-xl text-on-surface">Compromissos Financeiros</h3>
+            <h3 className="font-headline-md text-xl text-on-surface dark:text-white">Compromissos Financeiros</h3>
             <div className="flex gap-4 items-center">
               <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Fixos + Assinaturas</span>
               <button 
@@ -330,23 +330,23 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
                   <div 
                     key={`${item.type}-${item.id}`} 
                     onClick={() => onNavigate?.('planning')}
-                    className="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-transparent hover:border-slate-200 transition-all cursor-pointer group active:scale-95"
+                    className="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all cursor-pointer group active:scale-95"
                   >
                     <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-sm text-primary group-hover:scale-110 transition-transform">
+                      <div className="w-12 h-12 bg-white dark:bg-slate-800 rounded-xl flex items-center justify-center shadow-sm text-primary dark:text-white group-hover:scale-110 transition-transform">
                         <span className="material-symbols-outlined text-xl">
                           {isFixed ? (cat?.icon || 'event_repeat') : 'subscriptions'}
                         </span>
                       </div>
                       <div>
-                        <h4 className="font-bold text-on-surface truncate max-w-[120px]">{item.name}</h4>
+                        <h4 className="font-bold text-on-surface dark:text-white truncate max-w-[120px]">{item.name}</h4>
                         <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">
                           {isFixed ? `Dia ${(item as any).dueDate}` : 'Mensal'}
                         </p>
                       </div>
                     </div>
                     <div className="text-right">
-                      <p className="font-black text-primary">{formatCurrency(item.amount)}</p>
+                      <p className="font-black text-primary dark:text-white">{formatCurrency(item.amount)}</p>
                       <span className={cn(
                         "text-[8px] font-black uppercase tracking-tighter px-2 py-0.5 rounded-full",
                         isFixed ? "bg-blue-100 text-blue-700" : "bg-purple-100 text-purple-700"
@@ -386,15 +386,15 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
               <div 
                 key={cat.id} 
                 onClick={() => onNavigate?.('expenses')}
-                className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all cursor-pointer group active:scale-95"
+                className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all cursor-pointer group active:scale-95"
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-slate-50 text-slate-600 group-hover:bg-primary/10 group-hover:text-primary transition-colors">
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-400 group-hover:bg-primary/10 group-hover:text-primary dark:group-hover:text-white transition-colors">
                     <span className="material-symbols-outlined text-lg">{cat.icon}</span>
                   </div>
                   <div>
                     <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest leading-none mb-1">{cat.id}</p>
-                    <p className="font-bold text-sm text-primary">{formatCurrency(spent)}</p>
+                    <p className="font-bold text-sm text-primary dark:text-white">{formatCurrency(spent)}</p>
                   </div>
                 </div>
                 <div className="w-full bg-slate-50 h-1.5 rounded-full overflow-hidden">

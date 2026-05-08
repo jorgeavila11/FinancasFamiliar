@@ -132,7 +132,7 @@ const Expenses: React.FC = () => {
           <span className="font-label-caps text-[10px] text-slate-400 uppercase tracking-widest block mb-1">
             {activeView === 'installments' ? 'PLANO ATUAL' : 'FLUXO FAMILIAR'}
           </span>
-          <h1 className="font-headline-md text-3xl font-bold text-primary">
+          <h1 className="font-headline-md text-3xl font-bold text-primary dark:text-white">
             {activeView === 'installments' ? 'Parcelamentos' : 'Histórico'}
           </h1>
         </div>
@@ -173,11 +173,11 @@ const Expenses: React.FC = () => {
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
-              className="bg-white w-full max-w-lg rounded-t-[32px] md:rounded-[32px] p-8 space-y-6 shadow-2xl"
+              className="bg-white dark:bg-slate-900 w-full max-w-lg rounded-t-[32px] md:rounded-[32px] p-8 space-y-6 shadow-2xl"
             >
               <div className="flex justify-between items-center">
-                <h3 className="text-2xl font-black text-primary">Nova Despesa</h3>
-                <button onClick={() => setShowAddModal(false)} className="p-2 bg-slate-50 rounded-full text-slate-400">
+                <h3 className="text-2xl font-black text-primary dark:text-white">Nova Despesa</h3>
+                <button onClick={() => setShowAddModal(false)} className="p-2 bg-slate-50 dark:bg-slate-800 rounded-full text-slate-400">
                   <X className="w-6 h-6" />
                 </button>
               </div>
@@ -193,7 +193,7 @@ const Expenses: React.FC = () => {
                       onChange={(e) => setAmount(e.target.value)}
                       placeholder="0,00"
                       required
-                      className="w-full bg-slate-50 border-none h-16 rounded-2xl pl-14 pr-6 text-2xl font-black text-primary focus:ring-2 focus:ring-primary/10"
+                      className="w-full bg-slate-50 dark:bg-slate-800 border-none h-16 rounded-2xl pl-14 pr-6 text-2xl font-black text-primary dark:text-white focus:ring-2 focus:ring-primary/10"
                     />
                   </div>
                 </div>
@@ -208,16 +208,16 @@ const Expenses: React.FC = () => {
                       onChange={(e) => setMerchant(e.target.value)}
                       placeholder="Ex: Supermercado, Aluguel..."
                       required
-                      className="w-full bg-slate-50 border-none h-14 rounded-2xl pl-14 pr-6 font-bold text-primary focus:ring-2 focus:ring-primary/10"
+                      className="w-full bg-slate-50 dark:bg-slate-800 border-none h-14 rounded-2xl pl-14 pr-6 font-bold text-primary dark:text-white focus:ring-2 focus:ring-primary/10"
                     />
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between p-4 bg-slate-50 rounded-2xl">
+                <div className="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800 rounded-2xl">
                   <div className="flex items-center gap-3">
-                    <Calendar className="w-5 h-5 text-primary" />
+                    <Calendar className="w-5 h-5 text-primary dark:text-white" />
                     <div>
-                      <p className="font-bold text-primary text-sm">Compra Parcelada</p>
+                      <p className="font-bold text-primary dark:text-white text-sm">Compra Parcelada</p>
                       <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Dividir em meses futuros</p>
                     </div>
                   </div>
@@ -247,7 +247,7 @@ const Expenses: React.FC = () => {
                       <select 
                         value={totalInstallments}
                         onChange={(e) => setTotalInstallments(e.target.value)}
-                        className="w-full bg-slate-50 border-none h-14 rounded-xl px-4 font-bold text-primary focus:ring-2 focus:ring-primary/10"
+                        className="w-full bg-slate-50 dark:bg-slate-800 border-none h-14 rounded-xl px-4 font-bold text-primary dark:text-white focus:ring-2 focus:ring-primary/10"
                       >
                         {[2,3,4,5,6,10,12,18,24].map(n => (
                           <option key={n} value={n}>{n}x</option>
@@ -256,7 +256,7 @@ const Expenses: React.FC = () => {
                     </div>
                     <div>
                       <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2">Valor da Parcela</label>
-                      <div className="h-14 flex items-center px-4 bg-slate-50 rounded-xl font-bold text-primary text-sm opacity-60">
+                      <div className="h-14 flex items-center px-4 bg-slate-50 dark:bg-slate-800 rounded-xl font-bold text-primary dark:text-white text-sm opacity-60">
                         {formatCurrency(parseFloat(amount.replace(',', '.')) / parseInt(totalInstallments) || 0)}
                       </div>
                     </div>
@@ -273,7 +273,7 @@ const Expenses: React.FC = () => {
                         onClick={() => setCategory(cat.id)}
                         className={cn(
                           "flex items-center gap-3 p-4 rounded-xl border transition-all text-left",
-                          category === cat.id ? "bg-primary/5 border-primary text-primary" : "bg-white border-slate-100 text-slate-400"
+                          category === cat.id ? "bg-primary/5 border-primary text-primary dark:text-white" : "bg-white dark:bg-slate-900 border-slate-100 dark:border-slate-800 text-slate-400"
                         )}
                       >
                         <span className="material-symbols-outlined text-lg leading-none">{cat.icon}</span>
@@ -301,13 +301,13 @@ const Expenses: React.FC = () => {
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 relative overflow-hidden"
+            className="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 relative overflow-hidden"
           >
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16"></div>
             <div className="relative z-10">
               <p className="font-label-caps text-[10px] text-slate-400 font-bold uppercase tracking-widest">IMPACTO NO ORÇAMENTO MENSAL</p>
               <div className="mt-2 flex items-baseline gap-2">
-                <span className="font-display-lg text-4xl font-bold text-primary">{formatCurrency(monthlyInstallmentImpact)}</span>
+                <span className="font-display-lg text-4xl font-bold text-primary dark:text-white">{formatCurrency(monthlyInstallmentImpact)}</span>
                 <span className="font-body-md text-slate-400 font-medium">/ mês</span>
               </div>
               <div className="mt-6 w-full bg-slate-50 h-2 rounded-full overflow-hidden">
@@ -320,7 +320,7 @@ const Expenses: React.FC = () => {
           </motion.div>
 
           <div className="space-y-4">
-            <h2 className="font-headline-md text-lg font-bold text-slate-800">Parcelamentos Ativos</h2>
+            <h2 className="font-headline-md text-lg font-bold text-slate-800 dark:text-white">Parcelamentos Ativos</h2>
             <div className="space-y-3">
               {(Object.values(groupedInstallments) as GroupedInstallment[]).length > 0 ? (
                 (Object.values(groupedInstallments) as GroupedInstallment[]).map(item => {
@@ -329,17 +329,17 @@ const Expenses: React.FC = () => {
                     <motion.div 
                       key={item.name}
                       whileHover={{ x: 5 }}
-                      className="bg-white p-5 rounded-2xl shadow-sm border border-slate-50 flex items-center gap-4 cursor-pointer"
+                      className="bg-white dark:bg-slate-900 p-5 rounded-2xl shadow-sm border border-slate-50 dark:border-slate-800 flex items-center gap-4 cursor-pointer"
                     >
-                      <div className={cn("w-12 h-12 flex items-center justify-center rounded-xl bg-primary/5 text-primary")}>
+                      <div className={cn("w-12 h-12 flex items-center justify-center rounded-xl bg-primary/5 text-primary dark:text-white")}>
                         <span className="material-symbols-outlined text-xl">{cat.icon}</span>
                       </div>
                       <div className="flex-1">
-                        <h3 className="font-bold text-primary">{item.name}</h3>
+                        <h3 className="font-bold text-primary dark:text-white">{item.name}</h3>
                         <p className="text-slate-400 text-xs font-medium">{item.paidInstallments} / {item.totalInstallments} parcelas pagas</p>
                       </div>
                       <div className="text-right">
-                        <p className="font-bold text-primary">{formatCurrency(item.installmentAmount)}</p>
+                        <p className="font-bold text-primary dark:text-white">{formatCurrency(item.installmentAmount)}</p>
                         <p className="text-[9px] text-emerald-600 font-extrabold uppercase tracking-widest">RESTANTE: {formatCurrency(item.remainingAmount)}</p>
                       </div>
                     </motion.div>
@@ -357,7 +357,7 @@ const Expenses: React.FC = () => {
       ) : (
         <div className="space-y-4">
           <div className="flex justify-between items-center">
-            <h2 className="font-headline-md text-lg font-bold text-slate-800">Histórico</h2>
+            <h2 className="font-headline-md text-lg font-bold text-slate-800 dark:text-white">Histórico</h2>
             <span className="text-[10px] font-black text-slate-300 uppercase tracking-widest">{expenses.length} registros</span>
           </div>
           <div className="space-y-3">
@@ -368,19 +368,19 @@ const Expenses: React.FC = () => {
                   <motion.div 
                     key={exp.id} 
                     whileHover={{ x: 3 }}
-                    className="bg-white p-4 rounded-2xl shadow-sm border border-slate-50 flex items-center gap-4 group"
+                    className="bg-white dark:bg-slate-900 p-4 rounded-2xl shadow-sm border border-slate-50 dark:border-slate-800 flex items-center gap-4 group"
                   >
-                    <div className="w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center text-primary shadow-inner group-hover:bg-primary/5 transition-colors">
+                    <div className="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center text-primary dark:text-white shadow-inner group-hover:bg-primary/5 transition-colors">
                       <span className="material-symbols-outlined text-xl leading-none">
                         {cat.icon}
                       </span>
                     </div>
                     <div className="flex-1">
-                      <h4 className="font-bold text-primary line-clamp-1">{exp.merchant}</h4>
+                      <h4 className="font-bold text-primary dark:text-white line-clamp-1">{exp.merchant}</h4>
                       <p className="text-[9px] text-slate-400 font-bold uppercase tracking-widest">{exp.category}</p>
                     </div>
                     <div className="text-right">
-                      <p className="font-black text-primary">{formatCurrency(exp.amount)}</p>
+                      <p className="font-black text-primary dark:text-white">{formatCurrency(exp.amount)}</p>
                       <p className="text-[9px] text-slate-400 font-medium">
                         {new Date(exp.date).toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' })}
                       </p>

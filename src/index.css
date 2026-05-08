@@ -40,6 +40,19 @@
   --font-label-caps: "Inter", sans-serif;
 }
 
+@layer base {
+  .dark {
+    --color-primary: #ffffff;
+    --color-on-primary: #000000;
+    --color-background: #020617;
+    --color-on-background: #f8fafc;
+    --color-on-surface: #f8fafc;
+    --color-on-surface-variant: #a1a1aa;
+    --color-primary-container: #1e293b;
+    --color-on-primary-container: #cbd5e1;
+  }
+}
+
 :root {
   --radius-xl: 1.5rem;
   --radius-lg: 1rem;

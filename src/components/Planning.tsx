@@ -130,15 +130,15 @@ const Planning: React.FC = () => {
       {/* Sub-navigation */}
       <section className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <h1 className="font-headline-md text-3xl font-bold text-primary">Previsão e Agenda</h1>
-          <p className="text-on-surface-variant font-body-md opacity-70">Estruture o futuro financeiro da sua família.</p>
+          <h1 className="font-headline-md text-3xl font-bold text-primary dark:text-white">Previsão e Agenda</h1>
+          <p className="text-on-surface-variant dark:text-slate-400 font-body-md opacity-70">Estruture o futuro financeiro da sua família.</p>
         </div>
-        <div className="flex bg-slate-100/80 backdrop-blur rounded-2xl p-1.5 gap-1 self-start md:self-auto border border-slate-200">
+        <div className="flex bg-slate-100/80 dark:bg-slate-800/80 backdrop-blur rounded-2xl p-1.5 gap-1 self-start md:self-auto border border-slate-200 dark:border-slate-700">
           <button 
             onClick={() => setActiveTab('calendar')}
             className={cn(
               "px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all",
-              activeTab === 'calendar' ? "bg-white text-primary shadow-sm" : "text-slate-500 hover:text-slate-700"
+              activeTab === 'calendar' ? "bg-white dark:bg-slate-700 text-primary dark:text-white shadow-sm" : "text-slate-500 hover:text-slate-700 dark:hover:text-slate-300"
             )}
           >
             Visão Geral
@@ -147,7 +147,7 @@ const Planning: React.FC = () => {
             onClick={() => setActiveTab('budget')}
             className={cn(
               "px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all",
-              activeTab === 'budget' ? "bg-white text-primary shadow-sm" : "text-slate-500 hover:text-slate-700"
+              activeTab === 'budget' ? "bg-white dark:bg-slate-700 text-primary dark:text-white shadow-sm" : "text-slate-500 hover:text-slate-700 dark:hover:text-slate-300"
             )}
           >
             Orçamento
@@ -156,7 +156,7 @@ const Planning: React.FC = () => {
             onClick={() => setActiveTab('fixed')}
             className={cn(
               "px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all",
-              activeTab === 'fixed' ? "bg-white text-primary shadow-sm" : "text-slate-500 hover:text-slate-700"
+              activeTab === 'fixed' ? "bg-white dark:bg-slate-700 text-primary dark:text-white shadow-sm" : "text-slate-500 hover:text-slate-700 dark:hover:text-slate-300"
             )}
           >
             Fixos
@@ -176,30 +176,30 @@ const Planning: React.FC = () => {
             {/* Fluxo de Caixa Section */}
             <section className="space-y-6">
               <div className="flex md:items-center justify-between flex-col md:row-gap-2 md:flex-row gap-4">
-                <h2 className="font-headline-md text-2xl font-black text-primary">Previsão de Fluxo de Caixa</h2>
+                <h2 className="font-headline-md text-2xl font-black text-primary dark:text-white">Previsão de Fluxo de Caixa</h2>
                 <div className="flex gap-4">
-                  <span className="flex items-center gap-2 text-[10px] font-bold text-emerald-600 uppercase tracking-widest">
+                  <span className="flex items-center gap-2 text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest">
                     <span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> Projetado
                   </span>
-                  <span className="flex items-center gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
-                    <span className="w-2.5 h-2.5 rounded-full bg-slate-300"></span> Atual
+                  <span className="flex items-center gap-2 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">
+                    <span className="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-700"></span> Atual
                   </span>
                 </div>
               </div>
 
-              <div className="bg-white rounded-[2.5rem] p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 flex flex-col">
+              <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 dark:border-slate-800 flex flex-col">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
-                  <div className="p-6 rounded-2xl bg-slate-50/50 border border-slate-100 flex flex-col justify-between h-32">
+                  <div className="p-6 rounded-2xl bg-slate-50/50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700 flex flex-col justify-between h-32">
                     <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-1">Saldo Inicial</p>
-                    <p className="text-3xl font-black text-primary">R$ 12.450,<span className="text-xl text-slate-400">00</span></p>
+                    <p className="text-3xl font-black text-primary dark:text-white">R$ 12.450,<span className="text-xl text-slate-400">00</span></p>
                   </div>
-                  <div className="p-6 rounded-2xl bg-emerald-50/30 border border-emerald-100 flex flex-col justify-between h-32">
-                    <p className="text-[10px] font-black text-emerald-600/60 uppercase tracking-[0.2em] mb-1">Pico Previsto</p>
-                    <p className="text-3xl font-black text-emerald-600">R$ 14.200,<span className="text-xl opacity-60">00</span></p>
+                  <div className="p-6 rounded-2xl bg-emerald-50/30 dark:bg-emerald-900/20 border border-emerald-100 dark:border-emerald-900 flex flex-col justify-between h-32">
+                    <p className="text-[10px] font-black text-emerald-600/60 dark:text-emerald-400/60 uppercase tracking-[0.2em] mb-1">Pico Previsto</p>
+                    <p className="text-3xl font-black text-emerald-600 dark:text-emerald-400">R$ 14.200,<span className="text-xl opacity-60">00</span></p>
                   </div>
-                  <div className="p-6 rounded-2xl bg-slate-50/50 border border-slate-100 flex flex-col justify-between h-32">
+                  <div className="p-6 rounded-2xl bg-slate-50/50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700 flex flex-col justify-between h-32">
                     <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-1">Final Estimado</p>
-                    <p className="text-3xl font-black text-primary">R$ 11.120,<span className="text-xl text-slate-400">00</span></p>
+                    <p className="text-3xl font-black text-primary dark:text-white">R$ 11.120,<span className="text-xl text-slate-400">00</span></p>
                   </div>
                 </div>
 
@@ -251,18 +251,18 @@ const Planning: React.FC = () => {
             {/* Calendar Section */}
             <section className="space-y-6">
               <div className="flex items-center justify-between">
-                <h2 className="text-4xl font-black text-primary capitalize">{monthName} {yearName}</h2>
-                <div className="flex bg-slate-100 rounded-xl p-1 gap-1 border border-slate-200">
-                  <button onClick={prevMonth} className="w-10 h-10 flex items-center justify-center hover:bg-white rounded-lg transition-all text-slate-600">
+                <h2 className="text-4xl font-black text-primary dark:text-white capitalize">{monthName} {yearName}</h2>
+                <div className="flex bg-slate-100 dark:bg-slate-800 rounded-xl p-1 gap-1 border border-slate-200 dark:border-slate-700">
+                  <button onClick={prevMonth} className="w-10 h-10 flex items-center justify-center hover:bg-white dark:hover:bg-slate-700 rounded-lg transition-all text-slate-600 dark:text-slate-400">
                     <ChevronLeft className="w-5 h-5" />
                   </button>
-                  <button onClick={nextMonth} className="w-10 h-10 flex items-center justify-center hover:bg-white rounded-lg transition-all text-slate-600">
+                  <button onClick={nextMonth} className="w-10 h-10 flex items-center justify-center hover:bg-white dark:hover:bg-slate-700 rounded-lg transition-all text-slate-600 dark:text-slate-400">
                     <ChevronRight className="w-5 h-5" />
                   </button>
                 </div>
               </div>
 
-              <div className="bg-white rounded-[2.5rem] p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100">
+              <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 dark:border-slate-800">
                 <div className="grid grid-cols-7 gap-1 mb-4">
                   {['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SÁB'].map(day => (
                     <div key={day} className="text-center text-[10px] font-black text-slate-400 uppercase tracking-widest py-2">
@@ -272,7 +272,7 @@ const Planning: React.FC = () => {
                 </div>
                 <div className="grid grid-cols-7 gap-1">
                   {[...Array(firstDayOfMonth(currentDate))].map((_, i) => (
-                    <div key={`empty-${i}`} className="h-24 p-2 opacity-20 bg-slate-50/50 rounded-xl" />
+                    <div key={`empty-${i}`} className="h-24 p-2 opacity-20 bg-slate-50/50 dark:bg-slate-800 rounded-xl" />
                   ))}
                   {[...Array(daysInMonth(currentDate))].map((_, i) => {
                     const day = i + 1;
@@ -289,12 +289,12 @@ const Planning: React.FC = () => {
                           isSelected 
                             ? "bg-slate-900 text-white border-slate-900 shadow-xl shadow-slate-900/20" 
                             : dayExpenses.length > 0 
-                              ? "bg-primary/5 text-primary border-primary/20 hover:border-primary/40 shadow-sm" 
-                              : "bg-white hover:bg-slate-50 text-primary border-transparent"
+                              ? "bg-primary/5 dark:bg-primary/10 text-primary dark:text-white border-primary/20 hover:border-primary/40 shadow-sm" 
+                              : "bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 text-primary dark:text-slate-300 border-transparent"
                         )}
                       >
                         <div className="flex justify-between items-start">
-                          <span className={cn("font-black text-xl", isSelected ? "text-white" : "text-primary")}>{day}</span>
+                          <span className={cn("font-black text-xl", isSelected ? "text-white" : "text-primary dark:text-white")}>{day}</span>
                           {isToday && !isSelected && <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]" />}
                         </div>
 
@@ -339,13 +339,13 @@ const Planning: React.FC = () => {
             {/* Projected Expenses Section */}
             <section className="space-y-6">
               <div className="flex items-center justify-between">
-                <h2 className="font-headline-md text-2xl font-black text-primary">
+                <h2 className="font-headline-md text-2xl font-black text-primary dark:text-white">
                   {selectedDay ? `Compromissos do Dia ${selectedDay}` : 'Próximos Gastos Projetados'}
                 </h2>
                 {selectedDay && (
                   <button 
                     onClick={() => setSelectedDay(null)}
-                    className="text-[10px] font-black text-primary/40 uppercase tracking-widest hover:text-primary transition-colors"
+                    className="text-[10px] font-black text-primary/40 dark:text-white/40 uppercase tracking-widest hover:text-primary dark:hover:text-white transition-colors"
                   >
                     Ver Todos
                   </button>
@@ -357,15 +357,15 @@ const Planning: React.FC = () => {
                   .filter(exp => !selectedDay || exp.dueDate === selectedDay)
                   .sort((a, b) => a.dueDate - b.dueDate)
                   .map(exp => (
-                  <div key={exp.id} className="flex items-center justify-between p-6 bg-white rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-md transition-all group">
+                  <div key={exp.id} className="flex items-center justify-between p-6 bg-white dark:bg-slate-900 rounded-[2rem] border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all group">
                     <div className="flex items-center gap-6">
-                      <div className="w-16 h-16 bg-slate-900 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-slate-900/10 group-hover:scale-110 transition-transform">
+                      <div className="w-16 h-16 bg-slate-900 dark:bg-slate-800 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-slate-900/10 group-hover:scale-110 transition-transform">
                         <span className="material-symbols-outlined text-3xl">
                           {CATEGORIES.find(c => c.id === exp.category)?.icon || 'home'}
                         </span>
                       </div>
                       <div>
-                        <h4 className="font-black text-primary text-lg">{exp.name}</h4>
+                        <h4 className="font-black text-primary dark:text-white text-lg">{exp.name}</h4>
                         <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">
                           {exp.dueDate} DE {monthName.toUpperCase()} • Contas Fixas
                         </p>
@@ -382,20 +382,20 @@ const Planning: React.FC = () => {
                 {(!selectedDay) && (Object.entries(budgetValues) as [string, number][]).filter(([_, val]) => val > 0).map(([catId, amount]) => {
                   const cat = CATEGORIES.find(c => c.id === catId);
                   return (
-                    <div key={catId} className="flex items-center justify-between p-6 bg-white rounded-[2rem] border border-slate-100 shadow-sm opacity-80 group">
+                    <div key={catId} className="flex items-center justify-between p-6 bg-white dark:bg-slate-900 rounded-[2rem] border border-slate-100 dark:border-slate-800 shadow-sm opacity-80 group">
                       <div className="flex items-center gap-6">
-                        <div className="w-16 h-16 bg-emerald-100 rounded-2xl flex items-center justify-center text-emerald-600 group-hover:scale-110 transition-transform">
+                        <div className="w-16 h-16 bg-emerald-100 dark:bg-emerald-900/20 rounded-2xl flex items-center justify-center text-emerald-600 dark:text-emerald-400 group-hover:scale-110 transition-transform">
                           <span className="material-symbols-outlined text-3xl">{cat?.icon || 'category'}</span>
                         </div>
                         <div>
-                          <h4 className="font-black text-primary text-lg">Reserva {catId}</h4>
+                          <h4 className="font-black text-primary dark:text-white text-lg">Reserva {catId}</h4>
                           <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">
                             LIMITE MENSAL • Contas Variáveis
                           </p>
                         </div>
                       </div>
                       <div className="text-right">
-                        <p className="font-black text-emerald-600 text-xl">-{formatCurrency(amount)}</p>
+                        <p className="font-black text-emerald-600 dark:text-emerald-400 text-xl">-{formatCurrency(amount)}</p>
                         <p className="text-[9px] text-slate-300 font-bold uppercase tracking-widest">PROJETADO</p>
                       </div>
                     </div>
@@ -443,20 +443,20 @@ const Planning: React.FC = () => {
             className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start"
           >
             <div className="lg:col-span-8 space-y-6">
-              <div className="bg-white rounded-3xl p-8 shadow-sm border border-slate-100">
+              <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 shadow-sm border border-slate-100 dark:border-slate-800">
                 <div className="flex justify-between items-center mb-8">
                   <div>
-                    <h2 className="text-2xl font-black text-primary">Renda Familiar</h2>
+                    <h2 className="text-2xl font-black text-primary dark:text-white">Renda Familiar</h2>
                     <p className="text-sm text-slate-400 font-medium">Cadastre o total disponível (salários, ganhos) para o mês.</p>
                   </div>
                 </div>
                 
-                <div className="p-6 rounded-2xl bg-primary/5 border border-primary/10">
+                <div className="p-6 rounded-2xl bg-primary/5 dark:bg-primary/10 border border-primary/10 dark:border-primary/20">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-primary shadow-sm">
+                    <div className="w-10 h-10 rounded-xl bg-white dark:bg-slate-800 flex items-center justify-center text-primary dark:text-white shadow-sm">
                       <Banknote className="w-6 h-6" />
                     </div>
-                    <span className="font-bold text-primary">Salário Mensal Total</span>
+                    <span className="font-bold text-primary dark:text-white">Salário Mensal Total</span>
                   </div>
                   <div className="relative">
                     <span className="absolute left-4 top-1/2 -translate-y-1/2 font-bold text-slate-400">R$</span>
@@ -465,16 +465,16 @@ const Planning: React.FC = () => {
                       value={monthlyIncome}
                       onChange={(e) => setMonthlyIncome(e.target.value)}
                       placeholder="0,00"
-                      className="w-full h-16 bg-white border-none rounded-xl pl-12 pr-4 font-black text-primary text-2xl focus:ring-2 focus:ring-primary/10 transition-all"
+                      className="w-full h-16 bg-white dark:bg-slate-800 border-none rounded-xl pl-12 pr-4 font-black text-primary dark:text-white text-2xl focus:ring-2 focus:ring-primary/10 transition-all"
                     />
                   </div>
                 </div>
               </div>
 
-              <div className="bg-white rounded-3xl p-8 shadow-sm border border-slate-100">
+              <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 shadow-sm border border-slate-100 dark:border-slate-800">
                 <div className="flex justify-between items-center mb-8">
                   <div>
-                    <h2 className="text-2xl font-black text-primary">Limites Mensais</h2>
+                    <h2 className="text-2xl font-black text-primary dark:text-white">Limites Mensais</h2>
                     <p className="text-sm text-slate-400 font-medium">Defina quanto sua família pode gastar por categoria.</p>
                   </div>
                   <button 
@@ -489,12 +489,12 @@ const Planning: React.FC = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {CATEGORIES.map(cat => (
-                  <div key={cat.id} className="p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:border-primary/20 transition-all group">
+                  <div key={cat.id} className="p-6 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:border-primary/20 transition-all group">
                     <div className="flex items-center gap-3 mb-4">
-                      <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-primary shadow-sm">
+                      <div className="w-10 h-10 rounded-xl bg-white dark:bg-slate-900 flex items-center justify-center text-primary dark:text-white shadow-sm">
                         <span className="material-symbols-outlined text-xl">{cat.icon}</span>
                       </div>
-                      <span className="font-bold text-primary">{cat.id}</span>
+                      <span className="font-bold text-primary dark:text-white">{cat.id}</span>
                     </div>
                     <div className="relative">
                       <span className="absolute left-4 top-1/2 -translate-y-1/2 font-bold text-slate-400">R$</span>
@@ -503,7 +503,7 @@ const Planning: React.FC = () => {
                         value={budgetValues[cat.id] || ''}
                         onChange={(e) => updateBudgetValue(cat.id, e.target.value)}
                         placeholder="0,00"
-                        className="w-full h-14 bg-white border-none rounded-xl pl-12 pr-4 font-black text-primary text-xl focus:ring-2 focus:ring-primary/10 transition-all"
+                        className="w-full h-14 bg-white dark:bg-slate-900 border-none rounded-xl pl-12 pr-4 font-black text-primary dark:text-white text-xl focus:ring-2 focus:ring-primary/10 transition-all"
                       />
                     </div>
                   </div>
@@ -555,8 +555,8 @@ const Planning: React.FC = () => {
             className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start"
           >
             <div className="lg:col-span-8 space-y-6">
-              <div className="bg-white rounded-3xl p-8 shadow-sm border border-slate-100">
-                <h3 className="text-2xl font-black text-primary mb-6">Novo Gasto Fixo</h3>
+              <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 shadow-sm border border-slate-100 dark:border-slate-800">
+                <h3 className="text-2xl font-black text-primary dark:text-white mb-6">Novo Gasto Fixo</h3>
                 <form onSubmit={handleAddFixedExpense} className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="col-span-2 md:col-span-1">
                     <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2">Nome do Gasto</label>
@@ -565,7 +565,7 @@ const Planning: React.FC = () => {
                       value={newFixedName}
                       onChange={(e) => setNewFixedName(e.target.value)}
                       placeholder="Ex: Aluguel, Internet..."
-                      className="w-full bg-slate-50 border-none h-14 rounded-xl px-4 font-bold text-primary focus:ring-2 focus:ring-primary/10"
+                      className="w-full bg-slate-50 dark:bg-slate-800 border-none h-14 rounded-xl px-4 font-bold text-primary dark:text-white focus:ring-2 focus:ring-primary/10"
                       required
                     />
                   </div>
@@ -578,7 +578,7 @@ const Planning: React.FC = () => {
                         value={newFixedAmount}
                         onChange={(e) => setNewFixedAmount(e.target.value)}
                         placeholder="0,00"
-                        className="w-full bg-slate-50 border-none h-14 rounded-xl pl-10 pr-4 font-bold text-primary focus:ring-2 focus:ring-primary/10"
+                        className="w-full bg-slate-50 dark:bg-slate-800 border-none h-14 rounded-xl pl-10 pr-4 font-bold text-primary dark:text-white focus:ring-2 focus:ring-primary/10"
                         required
                       />
                     </div>
@@ -588,7 +588,7 @@ const Planning: React.FC = () => {
                     <select 
                       value={newFixedDay}
                       onChange={(e) => setNewFixedDay(e.target.value)}
-                      className="w-full bg-slate-50 border-none h-14 rounded-xl px-4 font-bold text-primary focus:ring-2 focus:ring-primary/10"
+                      className="w-full bg-slate-50 dark:bg-slate-800 border-none h-14 rounded-xl px-4 font-bold text-primary dark:text-white focus:ring-2 focus:ring-primary/10"
                     >
                       {[...Array(31)].map((_, i) => (
                         <option key={i+1} value={i+1}>Dia {i+1}</option>
@@ -600,7 +600,7 @@ const Planning: React.FC = () => {
                     <select 
                       value={newFixedCategory}
                       onChange={(e) => setNewFixedCategory(e.target.value)}
-                      className="w-full bg-slate-50 border-none h-14 rounded-xl px-4 font-bold text-primary focus:ring-2 focus:ring-primary/10"
+                      className="w-full bg-slate-50 dark:bg-slate-800 border-none h-14 rounded-xl px-4 font-bold text-primary dark:text-white focus:ring-2 focus:ring-primary/10"
                     >
                       {CATEGORIES.map(cat => (
                         <option key={cat.id} value={cat.id}>{cat.id}</option>
@@ -618,25 +618,25 @@ const Planning: React.FC = () => {
                 </form>
               </div>
 
-              <div className="bg-white rounded-3xl p-8 shadow-sm border border-slate-100">
-                <h3 className="text-xl font-black text-primary mb-6">Gastos Cadastrados</h3>
+              <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 shadow-sm border border-slate-100 dark:border-slate-800">
+                <h3 className="text-xl font-black text-primary dark:text-white mb-6">Gastos Cadastrados</h3>
                 <div className="space-y-3">
                   {fixedExpenses.length > 0 ? (
                     fixedExpenses.sort((a,b) => a.dueDate - b.dueDate).map(exp => (
-                      <div key={exp.id} className="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-transparent hover:border-slate-200 transition-all">
+                      <div key={exp.id} className="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all">
                         <div className="flex items-center gap-4">
-                          <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-sm text-primary">
+                          <div className="w-12 h-12 bg-white dark:bg-slate-800 rounded-xl flex items-center justify-center shadow-sm text-primary dark:text-white">
                             <span className="material-symbols-outlined text-xl">
                               {CATEGORIES.find(c => c.id === exp.category)?.icon || 'receipt_long'}
                             </span>
                           </div>
                           <div>
-                            <h4 className="font-bold text-primary">{exp.name}</h4>
+                            <h4 className="font-bold text-primary dark:text-white">{exp.name}</h4>
                             <p className="text-xs text-slate-400">Vence dia {exp.dueDate} • {exp.category}</p>
                           </div>
                         </div>
                         <div className="flex items-center gap-6">
-                          <p className="font-bold text-primary text-lg">{formatCurrency(exp.amount)}</p>
+                          <p className="font-bold text-primary dark:text-white text-lg">{formatCurrency(exp.amount)}</p>
                           <button 
                             onClick={() => handleDeleteFixedExpense(exp.id)}
                             className="p-2 text-slate-300 hover:text-red-500 transition-colors"

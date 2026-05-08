@@ -35,7 +35,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeTab, setActiveTab }) => {
               )}>
                 <Icon className="w-7 h-7" />
               </div>
-              <span className="font-manrope text-[10px] font-bold uppercase tracking-wider mt-1 text-primary">
+              <span className="font-manrope text-[10px] font-bold uppercase tracking-wider mt-1 text-slate-900 dark:text-white">
                 {tab.label}
               </span>
             </button>
@@ -50,7 +50,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeTab, setActiveTab }) => {
           >
             <div className={cn(
               "flex flex-col items-center gap-1 transition-all",
-              isActive ? "text-primary scale-110" : "text-slate-400"
+              isActive ? "text-primary dark:text-white scale-110" : "text-slate-400"
             )}>
               <Icon className={cn("w-6 h-6", isActive && "fill-current")} />
               <span className="font-manrope text-[10px] font-medium uppercase tracking-wider">
@@ -58,7 +58,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeTab, setActiveTab }) => {
               </span>
             </div>
             {isActive && (
-              <div className="absolute bottom-2 w-1 h-1 bg-primary rounded-full"></div>
+              <div className="absolute bottom-2 w-1 h-1 bg-primary dark:bg-white rounded-full"></div>
             )}
           </button>
         );

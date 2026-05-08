@@ -82,7 +82,7 @@ const Settings: React.FC = () => {
       <div className="flex flex-col md:flex-row gap-8">
         {/* Sidebar */}
         <div className="w-full md:w-64 space-y-2">
-          <h2 className="text-2xl font-black text-primary mb-6 px-4">Configurações</h2>
+          <h2 className="text-2xl font-black text-primary dark:text-white mb-6 px-4">Configurações</h2>
           {sections.map((section) => (
             <button
               key={section.id}
@@ -95,7 +95,7 @@ const Settings: React.FC = () => {
               )}
             >
               <div className="flex items-center gap-3">
-                <section.icon className={cn("w-5 h-5", activeSection === section.id ? "text-white" : "text-slate-400 group-hover:text-primary")} />
+                <section.icon className={cn("w-5 h-5", activeSection === section.id ? "text-white" : "text-slate-400 group-hover:text-primary dark:group-hover:text-white")} />
                 <span className="font-bold text-sm">{section.label}</span>
               </div>
               <ChevronRight className={cn("w-4 h-4 opacity-50", activeSection === section.id ? "block" : "hidden group-hover:block")} />
@@ -124,8 +124,8 @@ const Settings: React.FC = () => {
             {activeSection === 'profile' && (
               <div className="space-y-8">
                 <div>
-                  <h3 className="text-xl font-black text-primary mb-1">Meu Perfil</h3>
-                  <p className="text-sm text-slate-400 font-medium">Gerencie suas informações pessoais.</p>
+                  <h3 className="text-xl font-black text-primary dark:text-white mb-1">Meu Perfil</h3>
+                  <p className="text-sm text-slate-400 dark:text-slate-300 font-medium">Gerencie suas informações pessoais.</p>
                 </div>
 
                 <div className="flex flex-col md:flex-row gap-8 items-center md:items-start">
@@ -151,13 +151,13 @@ const Settings: React.FC = () => {
                         type="text"
                         value={displayName}
                         onChange={(e) => setDisplayName(e.target.value)}
-                        className="w-full h-14 bg-slate-50 dark:bg-slate-800 rounded-2xl px-6 font-bold text-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                        className="w-full h-14 bg-white dark:bg-slate-800 rounded-2xl px-6 font-bold text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                         placeholder="Seu nome"
                       />
                     </div>
                     <div className="space-y-2">
-                      <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest px-1">E-mail (Não editável)</label>
-                      <div className="w-full h-14 bg-slate-100 dark:bg-slate-900 rounded-2xl px-6 flex items-center font-bold text-slate-400 border border-slate-200 dark:border-slate-800">
+                      <label className="text-[10px] font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest px-1">E-mail (Não editável)</label>
+                      <div className="w-full h-14 bg-slate-50 dark:bg-slate-900 rounded-2xl px-6 flex items-center font-bold text-slate-400 border border-slate-200 dark:border-slate-800">
                         {profile?.email}
                       </div>
                     </div>
@@ -167,10 +167,10 @@ const Settings: React.FC = () => {
                         type="password"
                         value={geminiApiKey}
                         onChange={(e) => setGeminiApiKey(e.target.value)}
-                        className="w-full h-14 bg-slate-50 dark:bg-slate-800 rounded-2xl px-6 font-bold text-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                        className="w-full h-14 bg-white dark:bg-slate-800 rounded-2xl px-6 font-bold text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                         placeholder="AIzaSy..."
                       />
-                      <p className="text-[10px] text-slate-400 px-1 leading-tight">
+                      <p className="text-[10px] text-slate-500 dark:text-slate-400 px-1 leading-tight">
                         Obtenha sua chave gratuita em <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Google AI Studio</a>. Isso evita o uso dos limites do sistema.
                       </p>
                     </div>
@@ -201,8 +201,8 @@ const Settings: React.FC = () => {
             {activeSection === 'family' && (
               <div className="space-y-8">
                 <div>
-                  <h3 className="text-xl font-black text-primary mb-1">Meu Orçamento</h3>
-                  <p className="text-sm text-slate-400 font-medium">Configurações globais do seu orçamento.</p>
+                  <h3 className="text-xl font-black text-primary dark:text-white mb-1">Meu Orçamento</h3>
+                  <p className="text-sm text-slate-400 dark:text-slate-300 font-medium">Configurações globais do seu orçamento.</p>
                 </div>
 
                 <div className="space-y-6">
@@ -212,19 +212,19 @@ const Settings: React.FC = () => {
                       type="text"
                       value={householdName}
                       onChange={(e) => setHouseholdName(e.target.value)}
-                      className="w-full h-14 bg-slate-50 dark:bg-slate-800 rounded-2xl px-6 font-bold text-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                      className="w-full h-14 bg-white dark:bg-slate-800 rounded-2xl px-6 font-bold text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                       placeholder="Ex: Meu Orçamento"
                     />
                   </div>
                   <div className="space-y-2">
                     <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest px-1">Renda Total Projetada (Mensal)</label>
                     <div className="relative">
-                      <span className="absolute left-6 top-1/2 -translate-y-1/2 font-bold text-primary">R$</span>
+                      <span className="absolute left-6 top-1/2 -translate-y-1/2 font-bold text-slate-900 dark:text-white">R$</span>
                       <input 
                         type="text"
                         value={monthlyIncome}
                         onChange={(e) => setMonthlyIncome(e.target.value)}
-                        className="w-full h-14 bg-slate-50 dark:bg-slate-800 rounded-2xl pl-14 pr-6 font-bold text-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                        className="w-full h-14 bg-white dark:bg-slate-800 rounded-2xl pl-14 pr-6 font-bold text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                         placeholder="14.000,00"
                       />
                     </div>

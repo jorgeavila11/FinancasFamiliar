@@ -81,17 +81,17 @@ const Insights: React.FC = () => {
   return (
     <div className="space-y-10 pb-12">
       <section className="space-y-2">
-        <h1 className="font-headline-md text-3xl font-bold text-primary">Análises Mensais</h1>
-        <p className="text-on-surface-variant font-body-md opacity-70">Saúde financeira da sua família em tempo real.</p>
+        <h1 className="font-headline-md text-3xl font-bold text-primary dark:text-white">Análises Mensais</h1>
+        <p className="text-on-surface-variant dark:text-slate-400 font-body-md opacity-70">Saúde financeira da sua família em tempo real.</p>
       </section>
 
       <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
         {/* Total Spending History Card */}
-        <div className="md:col-span-8 bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between">
+        <div className="md:col-span-8 bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col justify-between">
           <div className="flex justify-between items-end mb-8">
             <div>
               <span className="font-label-caps text-[10px] text-slate-400 font-bold uppercase tracking-widest">Gasto Total (Mês Atual)</span>
-              <h2 className="font-headline-md text-3xl font-bold flex items-baseline gap-2 mt-1">
+              <h2 className="font-headline-md text-3xl font-bold flex items-baseline gap-2 mt-1 dark:text-white">
                 {formatCurrency(totalSpentThisMonth)}
                 <span className={cn(
                   "text-sm font-bold flex items-center mb-1",
@@ -134,18 +134,18 @@ const Insights: React.FC = () => {
         </div>
 
         {/* Categories Breakdown Card */}
-        <div className="md:col-span-4 bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between">
+        <div className="md:col-span-4 bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col justify-between">
           <div>
             <span className="font-label-caps text-[10px] text-slate-400 font-bold uppercase tracking-widest">Categorias</span>
-            <h2 className="font-headline-md text-2xl font-bold mt-1 mb-8">Maiores Gastos</h2>
+            <h2 className="font-headline-md text-2xl font-bold mt-1 mb-8 dark:text-white">Maiores Gastos</h2>
             
             <div className="space-y-4 max-h-[200px] overflow-y-auto pr-2 custom-scrollbar">
               {categoryData.length > 0 ? (
                 categoryData.sort((a,b) => b.value - a.value).map(cat => (
                   <div key={cat.name} className="flex items-center gap-4">
                     <div className="w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: cat.color }}></div>
-                    <span className="flex-grow font-bold text-sm text-slate-600 truncate">{cat.name}</span>
-                    <span className="font-bold text-primary whitespace-nowrap">{formatCurrency(cat.value)}</span>
+                    <span className="flex-grow font-bold text-sm text-slate-600 dark:text-slate-400 truncate">{cat.name}</span>
+                    <span className="font-bold text-primary dark:text-white whitespace-nowrap">{formatCurrency(cat.value)}</span>
                   </div>
                 ))
               ) : (
@@ -174,7 +174,7 @@ const Insights: React.FC = () => {
               </PieChart>
             </ResponsiveContainer>
             <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-              <span className="text-lg font-black text-slate-800 uppercase">{monthNames[now.getMonth()]}</span>
+              <span className="text-lg font-black text-slate-800 dark:text-white uppercase">{monthNames[now.getMonth()]}</span>
               <span className="text-[10px] font-bold text-slate-400">2026</span>
             </div>
           </div>
@@ -183,17 +183,17 @@ const Insights: React.FC = () => {
 
       <section className="space-y-6">
         <div className="flex justify-between items-center">
-          <h2 className="font-headline-md text-2xl font-bold text-primary">Hábitos de Consumo</h2>
-          <button className="text-primary font-bold text-[10px] uppercase tracking-[0.2em] flex items-center hover:underline">
+          <h2 className="font-headline-md text-2xl font-bold text-primary dark:text-white">Hábitos de Consumo</h2>
+          <button className="text-primary dark:text-white font-bold text-[10px] uppercase tracking-[0.2em] flex items-center hover:underline">
             Ver Histórico <History className="w-4 h-4 ml-2" />
           </button>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
-            { id: 1, title: 'Mestre do Mercado', text: 'Você economizou 12% em compras este mês!', icon: ShoppingCart, bg: 'bg-emerald-50', color: 'text-emerald-600', subBg: 'bg-emerald-200' },
-            { id: 2, title: 'Alerta de Energia', text: 'Custos de energia subiram 8%. Revise o uso.', icon: Zap, bg: 'bg-slate-900', color: 'text-white', subBg: 'bg-slate-700' },
-            { id: 3, title: 'Mesada Pronta', text: 'As metas das crianças estão 90% completas.', icon: Stars, bg: 'bg-blue-50', color: 'text-blue-600', subBg: 'bg-blue-200' }
+            { id: 1, title: 'Mestre do Mercado', text: 'Você economizou 12% em compras este mês!', icon: ShoppingCart, bg: 'bg-emerald-50 dark:bg-emerald-900/20', color: 'text-emerald-600 dark:text-emerald-400', subBg: 'bg-emerald-200 dark:bg-emerald-800/40' },
+            { id: 2, title: 'Alerta de Energia', text: 'Custos de energia subiram 8%. Revise o uso.', icon: Zap, bg: 'bg-slate-900 dark:bg-slate-800', color: 'text-white', subBg: 'bg-slate-700 dark:bg-slate-600' },
+            { id: 3, title: 'Mesada Pronta', text: 'As metas das crianças estão 90% completas.', icon: Stars, bg: 'bg-blue-50 dark:bg-blue-900/20', color: 'text-blue-600 dark:text-blue-400', subBg: 'bg-blue-200 dark:bg-blue-800/40' }
           ].map(habit => (
             <div key={habit.id} className={cn("p-6 rounded-2xl flex gap-4 border border-transparent shadow-sm hover:shadow-md transition-all cursor-pointer", habit.bg)}>
               <div className={cn("w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm", habit.subBg)}>
@@ -201,7 +201,7 @@ const Insights: React.FC = () => {
               </div>
               <div>
                 <h4 className={cn("font-bold text-sm", habit.color === 'text-white' ? 'text-white' : habit.color)}>{habit.title}</h4>
-                <p className={cn("text-xs mt-1 leading-relaxed opacity-80", habit.color === 'text-white' ? 'text-slate-400' : 'text-slate-500 font-medium')}>
+                <p className={cn("text-xs mt-1 leading-relaxed opacity-80", habit.color === 'text-white' ? 'text-slate-400' : 'text-slate-500 dark:text-slate-400 font-medium')}>
                   {habit.text}
                 </p>
               </div>
@@ -211,20 +211,20 @@ const Insights: React.FC = () => {
       </section>
 
       <section className="space-y-6">
-        <h2 className="font-headline-md text-2xl font-bold text-primary">Oportunidades de Economia</h2>
+        <h2 className="font-headline-md text-2xl font-bold text-primary dark:text-white">Oportunidades de Economia</h2>
         <div className="flex gap-6 overflow-x-auto pb-4 no-scrollbar">
           {[
             { id: 1, type: 'BANCÁRIO', title: 'Rendimento de Juros', text: 'Mude sua reserva para uma conta HYS e ganhe R$ 45 extras/mês.', icon: <Banknote className="w-12 h-12" />, btn: 'Explorar' },
             { id: 2, type: 'RECORRENTE', title: 'Assinaturas Esquecidas', text: 'Encontramos 2 serviços que você não usa há 60 dias. Poupe R$ 24,99.', icon: <History className="w-12 h-12" />, btn: 'Ver Serviços' }
           ].map(opp => (
-            <div key={opp.id} className="min-w-[320px] bg-white p-8 rounded-2xl shadow-sm border border-slate-50 relative overflow-hidden group">
-              <div className="absolute top-0 right-0 p-6 opacity-[0.03] group-hover:opacity-[0.06] group-hover:scale-110 transition-all text-primary">
+            <div key={opp.id} className="min-w-[320px] bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm border border-slate-50 dark:border-slate-800 relative overflow-hidden group">
+              <div className="absolute top-0 right-0 p-6 opacity-[0.03] group-hover:opacity-[0.06] group-hover:scale-110 transition-all text-primary dark:text-white">
                 {opp.icon}
               </div>
-              <span className="font-bold text-[9px] text-primary bg-slate-50 px-3 py-1 rounded-full uppercase tracking-widest">{opp.type}</span>
-              <h3 className="font-headline-md text-xl font-bold mt-4 mb-2">{opp.title}</h3>
+              <span className="font-bold text-[9px] text-primary dark:text-white bg-slate-50 dark:bg-slate-800 px-3 py-1 rounded-full uppercase tracking-widest">{opp.type}</span>
+              <h3 className="font-headline-md text-xl font-bold mt-4 mb-2 dark:text-white">{opp.title}</h3>
               <p className="text-sm text-slate-400 font-medium mb-8 leading-relaxed">{opp.text}</p>
-              <button className="w-full py-4 bg-primary text-white rounded-xl font-bold text-sm hover:opacity-90 active:scale-95 transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2">
+              <button className="w-full py-4 bg-primary dark:bg-blue-600 text-white rounded-xl font-bold text-sm hover:opacity-90 active:scale-95 transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2">
                 {opp.btn} <ExternalLink className="w-4 h-4 opacity-50" />
               </button>
             </div>
