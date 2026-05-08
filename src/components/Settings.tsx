@@ -5,12 +5,14 @@ import { doc, updateDoc, serverTimestamp } from 'firebase/firestore';
 import { handleFirestoreError, OperationType } from '../lib/firestoreErrorHandler';
 import { encryptApiKey, decryptApiKey } from '../lib/encryption';
 import { motion } from 'motion/react';
-import { User, Shield, Bell, CreditCard, Users, ChevronRight, Save, LogOut, Check } from 'lucide-react';
+import { User, Shield, Bell, CreditCard, Users, ChevronRight, Save, LogOut, Check, Sun, Moon, Monitor, Palette } from 'lucide-react';
 import { cn } from '../lib/utils';
+import { useTheme } from '../context/ThemeContext';
 import { signOut } from 'firebase/auth';
 
 const Settings: React.FC = () => {
   const { household, profile, refreshHousehold } = useHousehold();
+  const { theme, setTheme } = useTheme();
   const [displayName, setDisplayName] = useState(profile?.displayName || '');
   const [householdName, setHouseholdName] = useState(household?.name || '');
   const [monthlyIncome, setMonthlyIncome] = useState(household?.monthlyIncome?.toString() || '');
@@ -71,7 +73,8 @@ const Settings: React.FC = () => {
 
   const sections = [
     { id: 'profile', label: 'Meu Perfil', icon: User },
-    { id: 'family', label: 'Configurações', icon: Users },
+    { id: 'appearance', label: 'Aparência', icon: Palette },
+    { id: 'family', label: 'Gestão Familiar', icon: Users },
     { id: 'banking', label: 'Pagamentos & Planos', icon: CreditCard },
     { id: 'privacy', label: 'Privacidade & Segurança', icon: Shield },
     { id: 'notifications', label: 'Notificações', icon: Bell },
@@ -82,7 +85,7 @@ const Settings: React.FC = () => {
       <div className="flex flex-col md:flex-row gap-8">
         {/* Sidebar */}
         <div className="w-full md:w-64 space-y-2">
-          <h2 className="text-2xl font-black text-primary dark:text-white mb-6 px-4">Configurações</h2>
+          <h2 className="text-2xl font-black text-[#0A192F] dark:text-white mb-6 px-4">Configurações</h2>
           {sections.map((section) => (
             <button
               key={section.id}
@@ -124,7 +127,7 @@ const Settings: React.FC = () => {
             {activeSection === 'profile' && (
               <div className="space-y-8">
                 <div>
-                  <h3 className="text-xl font-black text-primary dark:text-white mb-1">Meu Perfil</h3>
+                  <h3 className="text-xl font-black text-[#0A192F] dark:text-white mb-1">Meu Perfil</h3>
                   <p className="text-sm text-slate-400 dark:text-slate-300 font-medium">Gerencie suas informações pessoais.</p>
                 </div>
 
@@ -198,10 +201,51 @@ const Settings: React.FC = () => {
               </div>
             )}
 
+            {activeSection === 'appearance' && (
+              <div className="space-y-8">
+                <div>
+                  <h3 className="text-xl font-black text-[#0A192F] dark:text-white mb-1">Aparência do Aplicativo</h3>
+                  <p className="text-sm text-slate-400 dark:text-slate-300 font-medium">Escolha como o aplicativo deve ser exibido para você.</p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {[
+                    { id: 'light', label: 'Claro', icon: Sun, desc: 'Ideal para ambientes iluminados.' },
+                    { id: 'dark', label: 'Escuro', icon: Moon, desc: 'Melhor para ambientes escuros.' },
+                    { id: 'system', label: 'Sistema', icon: Monitor, desc: 'Segue o tema do seu dispositivo.' },
+                  ].map((t) => (
+                    <button
+                      key={t.id}
+                      onClick={() => setTheme(t.id as any)}
+                      className={cn(
+                        "flex flex-col items-center gap-4 p-6 rounded-3xl border-2 transition-all text-center",
+                        theme === t.id 
+                          ? "border-primary bg-primary/5 dark:bg-primary/10" 
+                          : "border-slate-100 dark:border-slate-800 hover:border-slate-200"
+                      )}
+                    >
+                      <div className={cn(
+                        "w-12 h-12 rounded-full flex items-center justify-center transition-colors",
+                        theme === t.id ? "bg-primary text-white" : "bg-slate-100 dark:bg-slate-800 text-slate-400"
+                      )}>
+                        <t.icon className="w-6 h-6" />
+                      </div>
+                      <div>
+                        <p className={cn("font-bold text-sm", theme === t.id ? "text-primary dark:text-white" : "text-slate-600 dark:text-slate-400")}>
+                          {t.label}
+                        </p>
+                        <p className="text-[10px] text-slate-400 mt-1">{t.desc}</p>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {activeSection === 'family' && (
               <div className="space-y-8">
                 <div>
-                  <h3 className="text-xl font-black text-primary dark:text-white mb-1">Meu Orçamento</h3>
+                  <h3 className="text-xl font-black text-[#0A192F] dark:text-white mb-1">Meu Orçamento</h3>
                   <p className="text-sm text-slate-400 dark:text-slate-300 font-medium">Configurações globais do seu orçamento.</p>
                 </div>
 

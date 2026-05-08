@@ -5,6 +5,7 @@ import { doc, updateDoc, collection, addDoc, query, where, onSnapshot, deleteDoc
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { Home, Zap, Car, PiggyBank, ChevronLeft, ChevronRight, Save, Target, Banknote, Plus, Trash2, Calendar } from 'lucide-react';
 import { formatCurrency, cn } from '../lib/utils';
+import { useTheme } from '../context/ThemeContext';
 import { motion, AnimatePresence } from 'motion/react';
 import { CATEGORIES } from '../constants';
 import { handleFirestoreError, OperationType } from '../lib/firestoreErrorHandler';
@@ -12,6 +13,7 @@ import { FixedExpense } from '../types';
 
 const Planning: React.FC = () => {
   const { household } = useHousehold();
+  const { theme } = useTheme();
   const [activeTab, setActiveTab] = useState<'calendar' | 'budget' | 'fixed'>('calendar');
   const [budgetValues, setBudgetValues] = useState<Record<string, number>>({});
   const [monthlyIncome, setMonthlyIncome] = useState<string>('');
@@ -130,7 +132,7 @@ const Planning: React.FC = () => {
       {/* Sub-navigation */}
       <section className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <h1 className="font-headline-md text-3xl font-bold text-primary dark:text-white">Previsão e Agenda</h1>
+          <h1 className="font-headline-md text-3xl font-bold text-[#0A192F] dark:text-white">Previsão e Agenda</h1>
           <p className="text-on-surface-variant dark:text-slate-400 font-body-md opacity-70">Estruture o futuro financeiro da sua família.</p>
         </div>
         <div className="flex bg-slate-100/80 dark:bg-slate-800/80 backdrop-blur rounded-2xl p-1.5 gap-1 self-start md:self-auto border border-slate-200 dark:border-slate-700">
@@ -212,7 +214,7 @@ const Planning: React.FC = () => {
                           <stop offset="95%" stopColor="#10b981" stopOpacity={0}/>
                         </linearGradient>
                       </defs>
-                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
+                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={theme === 'dark' ? '#334155' : '#f1f5f9'} />
                       <XAxis 
                         dataKey="day" 
                         axisLine={false} 
@@ -513,30 +515,30 @@ const Planning: React.FC = () => {
             </div>
 
             <div className="lg:col-span-4 space-y-6">
-              <div className="bg-emerald-50 rounded-3xl p-8 border border-emerald-100">
-                <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-emerald-600 mb-6 shadow-sm">
+              <div className="bg-emerald-50 dark:bg-emerald-900/20 rounded-3xl p-8 border border-emerald-100 dark:border-emerald-800/50">
+                <div className="w-12 h-12 bg-white dark:bg-slate-800 rounded-2xl flex items-center justify-center text-emerald-600 dark:text-emerald-400 mb-6 shadow-sm">
                   <Target className="w-6 h-6" />
                 </div>
-                <h3 className="text-lg font-black text-emerald-900 mb-2">Por que definir um orçamento?</h3>
-                <p className="text-sm text-emerald-700/80 leading-relaxed font-medium">
+                <h3 className="text-lg font-black text-emerald-900 dark:text-emerald-300 mb-2">Por que definir um orçamento?</h3>
+                <p className="text-sm text-emerald-700/80 dark:text-emerald-400 font-medium leading-relaxed">
                   Pessoas que definem limites mensais economizam, em média, 15% a mais do que aquelas que apenas rastreiam gastos.
                 </p>
-                <div className="mt-6 pt-6 border-t border-emerald-200/50 space-y-4">
+                <div className="mt-6 pt-6 border-t border-emerald-200/50 dark:border-emerald-800 space-y-4">
                   <div>
-                    <p className="text-[10px] font-black text-emerald-800 uppercase tracking-widest mb-1">Limites Variáveis</p>
-                    <p className="text-xl font-black text-emerald-900">
+                    <p className="text-[10px] font-black text-emerald-800 dark:text-emerald-400 uppercase tracking-widest mb-1">Limites Variáveis</p>
+                    <p className="text-xl font-black text-emerald-900 dark:text-emerald-100">
                       {formatCurrency(totalBudgetLimit)}
                     </p>
                   </div>
                   <div>
-                    <p className="text-[10px] font-black text-emerald-800 uppercase tracking-widest mb-1">Custos Fixos</p>
-                    <p className="text-xl font-black text-emerald-900">
+                    <p className="text-[10px] font-black text-emerald-800 dark:text-emerald-400 uppercase tracking-widest mb-1">Custos Fixos</p>
+                    <p className="text-xl font-black text-emerald-900 dark:text-emerald-100">
                       {formatCurrency(totalFixed)}
                     </p>
                   </div>
-                  <div className="pt-4 border-t border-emerald-200/30">
-                    <p className="text-[10px] font-black text-emerald-800 uppercase tracking-widest mb-1">Total Geral Planejado</p>
-                    <p className="text-3xl font-black text-emerald-900">
+                  <div className="pt-4 border-t border-emerald-200/30 dark:border-emerald-800">
+                    <p className="text-[10px] font-black text-emerald-800 dark:text-emerald-400 uppercase tracking-widest mb-1">Total Geral Planejado</p>
+                    <p className="text-3xl font-black text-emerald-900 dark:text-emerald-100">
                       {formatCurrency(totalPlannedOverall)}
                     </p>
                   </div>
@@ -656,17 +658,17 @@ const Planning: React.FC = () => {
             </div>
 
             <div className="lg:col-span-4 space-y-6">
-              <div className="bg-blue-50 rounded-3xl p-8 border border-blue-100">
-                <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-blue-600 mb-6 shadow-sm">
+              <div className="bg-blue-50 dark:bg-blue-900/20 rounded-3xl p-8 border border-blue-100 dark:border-blue-800/50">
+                <div className="w-12 h-12 bg-white dark:bg-slate-800 rounded-2xl flex items-center justify-center text-blue-600 dark:text-blue-400 mb-6 shadow-sm">
                   <Calendar className="w-6 h-6" />
                 </div>
-                <h3 className="text-lg font-black text-blue-900 mb-2">Previsibilidade</h3>
-                <p className="text-sm text-blue-700/80 leading-relaxed font-medium">
+                <h3 className="text-lg font-black text-blue-900 dark:text-blue-300 mb-2">Previsibilidade</h3>
+                <p className="text-sm text-blue-700/80 dark:text-blue-400/80 font-medium leading-relaxed">
                   Estes gastos são descontados automaticamente do seu saldo disponível para dar uma visão real de quanto dinheiro sobra.
                 </p>
-                <div className="mt-6 pt-6 border-t border-blue-200/50">
-                  <p className="text-[10px] font-black text-blue-800 uppercase tracking-widest mb-1">Total em Gastos Fixos</p>
-                  <p className="text-3xl font-black text-blue-900">
+                <div className="mt-6 pt-6 border-t border-blue-200/50 dark:border-blue-800">
+                  <p className="text-[10px] font-black text-blue-800 dark:text-blue-400 uppercase tracking-widest mb-1">Total em Gastos Fixos</p>
+                  <p className="text-3xl font-black text-blue-900 dark:text-blue-100">
                     {formatCurrency(fixedExpenses.reduce((acc, curr) => acc + curr.amount, 0))}
                   </p>
                 </div>

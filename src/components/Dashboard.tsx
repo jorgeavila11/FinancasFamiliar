@@ -118,9 +118,9 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
     };
 
     return (
-      <div className="flex flex-col items-center justify-center p-12 text-center bg-white rounded-2xl shadow-sm border border-slate-100 min-h-[400px]">
-        <h2 className="text-2xl font-bold mb-4">Bem-vindo ao Family Finance!</h2>
-        <p className="text-slate-500 mb-8 max-w-sm">Crie um grupo familiar para começar a gerenciar metas compartilhadas, rastrear despesas e planejar o futuro da sua família juntos.</p>
+      <div className="flex flex-col items-center justify-center p-12 text-center bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 min-h-[400px]">
+        <h2 className="text-2xl font-bold mb-4 dark:text-white">Bem-vindo ao Family Finance!</h2>
+        <p className="text-slate-500 dark:text-slate-400 mb-8 max-w-sm">Crie um grupo familiar para começar a gerenciar metas compartilhadas, rastrear despesas e planejar o futuro da sua família juntos.</p>
         <button 
           onClick={handleCreateHousehold}
           className="bg-primary text-on-primary px-10 py-4 rounded-xl font-bold shadow-xl shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all"
@@ -156,39 +156,39 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
     <div className="space-y-8 pb-12">
       <section className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
         <div className="flex-1">
-          <h2 className="font-headline-md text-3xl font-black text-primary dark:text-white">Meu Dashboard</h2>
+          <h2 className="font-headline-md text-3xl font-black text-[#0A192F] dark:text-white">Meu Dashboard</h2>
           <p className="font-body-md text-slate-500 dark:text-slate-400 font-medium mt-1">Gerencie seu orçamento e gastos mensais.</p>
         </div>
         
-        <div className="flex items-center gap-3 bg-white p-2 rounded-2xl shadow-sm border border-slate-100">
-          <div className="flex bg-slate-50 rounded-xl p-1 gap-1 border border-slate-100">
+        <div className="flex items-center gap-3 bg-white dark:bg-slate-900 p-2 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+          <div className="flex bg-slate-50 dark:bg-slate-800 rounded-xl p-1 gap-1 border border-slate-100 dark:border-slate-700">
             <button 
               onClick={() => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1))}
-              className="w-10 h-10 flex items-center justify-center hover:bg-white rounded-lg transition-all text-slate-400 hover:text-primary"
+              className="w-10 h-10 flex items-center justify-center hover:bg-white dark:hover:bg-slate-700 rounded-lg transition-all text-slate-400 hover:text-primary dark:hover:text-white"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             <div className="px-4 flex items-center min-w-[140px] justify-center">
-              <span className="font-bold text-primary capitalize text-sm">
+              <span className="font-bold text-primary dark:text-white capitalize text-sm">
                 {currentDate.toLocaleString('pt-BR', { month: 'long', year: 'numeric' })}
               </span>
             </div>
             <button 
               onClick={() => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1))}
-              className="w-10 h-10 flex items-center justify-center hover:bg-white rounded-lg transition-all text-slate-400 hover:text-primary"
+              className="w-10 h-10 flex items-center justify-center hover:bg-white dark:hover:bg-slate-700 rounded-lg transition-all text-slate-400 hover:text-primary dark:hover:text-white"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
           </div>
           
-          <div className="h-10 w-[1px] bg-slate-100 mx-1" />
+          <div className="h-10 w-[1px] bg-slate-100 dark:bg-slate-800 mx-1" />
           
           <div 
             onClick={() => onNavigate?.('planning')}
-            className="text-right px-2 cursor-pointer hover:bg-slate-50 rounded-xl py-1 transition-colors"
+            className="text-right px-2 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl py-1 transition-colors"
           >
-            <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest leading-tight">Renda Mensal</p>
-            <p className="font-bold text-primary text-sm">{formatCurrency(household?.monthlyIncome || 0)}</p>
+            <p className="text-[9px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest leading-tight">Renda Mensal</p>
+            <p className="font-bold text-primary dark:text-white text-sm">{formatCurrency(household?.monthlyIncome || 0)}</p>
           </div>
         </div>
       </section>
@@ -360,11 +360,11 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
             ) : (
               // Empty state
               <div className="col-span-full py-12 text-center">
-                <div className="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4 text-slate-300">
+                <div className="w-16 h-16 bg-slate-50 dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-4 text-slate-300 dark:text-slate-600">
                   <Calendar className="w-8 h-8" />
                 </div>
-                <p className="text-slate-400 font-medium">Nenhum compromisso fixo ou assinatura encontrada.</p>
-                <p className="text-[10px] text-slate-300 uppercase font-black tracking-widest mt-1">Cadastre em Planejamento</p>
+                <p className="text-slate-400 dark:text-slate-500 font-medium">Nenhum compromisso fixo ou assinatura encontrada.</p>
+                <p className="text-[10px] text-slate-300 dark:text-slate-600 uppercase font-black tracking-widest mt-1">Cadastre em Planejamento</p>
               </div>
             )}
           </div>
@@ -414,14 +414,14 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
-          className="md:col-span-12 bg-emerald-50 rounded-2xl p-8 border border-emerald-100 flex flex-col md:flex-row items-center gap-6"
+          className="md:col-span-12 bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl p-8 border border-emerald-100 dark:border-emerald-800/50 flex flex-col md:flex-row items-center gap-6"
         >
-          <div className="bg-white p-4 rounded-2xl shadow-sm text-emerald-600">
+          <div className="bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-sm text-emerald-600 dark:text-emerald-400">
             <Zap className="w-8 h-8 fill-current" />
           </div>
           <div className="flex-1 text-center md:text-left">
-            <h4 className="font-label-caps text-[10px] text-emerald-800 font-bold uppercase tracking-widest mb-1">IA Insight</h4>
-            <p className="text-emerald-900 font-medium">
+            <h4 className="font-label-caps text-[10px] text-emerald-800 dark:text-emerald-400 font-bold uppercase tracking-widest mb-1">IA Insight</h4>
+            <p className="text-emerald-900 dark:text-emerald-300 font-medium text-sm md:text-base">
               {totalSpentThisMonth > totalBudget 
                 ? "Atenção: O orçamento familiar foi extrapolado este mês. Recomendamos revisar gastos com 'Estilo de Vida'."
                 : "Economia em curso: Você está dentro do planejado! Se continuar assim, poderá investir mais na meta do Carro Novo."}
@@ -429,7 +429,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
           </div>
           <button 
             onClick={() => onNavigate?.('insights')}
-            className="bg-white px-8 py-4 rounded-xl border border-emerald-100 font-bold text-xs shadow-sm hover:bg-emerald-50 transition-all text-emerald-700 w-full md:w-auto active:scale-95"
+            className="bg-white dark:bg-slate-800 px-8 py-4 rounded-xl border border-emerald-100 dark:border-emerald-800/50 font-bold text-xs shadow-sm hover:bg-emerald-50 dark:hover:bg-slate-700 transition-all text-emerald-700 dark:text-emerald-400 w-full md:w-auto active:scale-95"
           >
             ABRIR ANÁLISE
           </button>

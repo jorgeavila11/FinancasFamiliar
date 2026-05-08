@@ -13,6 +13,7 @@ import Navigation from './components/Navigation';
 import Header from './components/Header';
 import Settings from './components/Settings';
 import { HouseholdProvider } from './context/HouseholdContext';
+import { ThemeProvider } from './context/ThemeContext';
 import { handleFirestoreError, OperationType } from './lib/firestoreErrorHandler';
 
 export default function App() {
@@ -99,14 +100,16 @@ export default function App() {
   };
 
   return (
-    <HouseholdProvider userId={user.uid} profile={profile}>
-      <div className="min-h-screen bg-background text-on-background pb-32 md:pb-24">
-        <Header profile={profile} onNavigate={setActiveTab} />
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          {renderTab()}
-        </main>
-        <Navigation activeTab={activeTab} setActiveTab={setActiveTab} />
-      </div>
-    </HouseholdProvider>
+    <ThemeProvider>
+      <HouseholdProvider userId={user.uid} profile={profile}>
+        <div className="min-h-screen bg-background dark:bg-[#020617] text-on-background pb-32 md:pb-24">
+          <Header profile={profile} onNavigate={setActiveTab} />
+          <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            {renderTab()}
+          </main>
+          <Navigation activeTab={activeTab} setActiveTab={setActiveTab} />
+        </div>
+      </HouseholdProvider>
+    </ThemeProvider>
   );
 }

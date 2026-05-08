@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { UserProfile } from '../types';
-import { Bell, LogOut, User, Settings, Shield } from 'lucide-react';
+import { Bell, LogOut, User, Settings, Shield, Sun, Moon, Monitor } from 'lucide-react';
 import { auth } from '../lib/firebase';
 import { signOut } from 'firebase/auth';
 import { cn } from '../lib/utils';
+import { useTheme } from '../context/ThemeContext';
 import { motion, AnimatePresence } from 'motion/react';
 
 interface HeaderProps {
@@ -12,6 +13,7 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ profile, onNavigate }) => {
+  const { theme, setTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -86,7 +88,17 @@ const Header: React.FC<HeaderProps> = ({ profile, onNavigate }) => {
         <h1 className="font-manrope font-extrabold text-[#0A192F] dark:text-white tracking-tight text-lg">Minhas Finanças</h1>
       </div>
       <div className="flex items-center gap-4">
-        <button className="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors rounded-full relative">
+        <button 
+          onClick={() => setTheme(theme === 'light' ? 'dark' : theme === 'dark' ? 'system' : 'light')}
+          className="p-2 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all rounded-full flex items-center justify-center group"
+          title={`Tema atual: ${theme === 'light' ? 'Claro' : theme === 'dark' ? 'Escuro' : 'Sistema'}`}
+        >
+          {theme === 'light' && <Sun className="w-5 h-5 group-hover:rotate-12 transition-transform" />}
+          {theme === 'dark' && <Moon className="w-5 h-5 group-hover:-rotate-12 transition-transform" />}
+          {theme === 'system' && <Monitor className="w-5 h-5" />}
+        </button>
+
+        <button className="p-2 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors rounded-full relative">
           <Bell className="w-6 h-6" />
           <span className="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border border-white"></span>
         </button>

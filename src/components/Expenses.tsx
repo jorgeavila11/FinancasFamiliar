@@ -132,7 +132,7 @@ const Expenses: React.FC = () => {
           <span className="font-label-caps text-[10px] text-slate-400 uppercase tracking-widest block mb-1">
             {activeView === 'installments' ? 'PLANO ATUAL' : 'FLUXO FAMILIAR'}
           </span>
-          <h1 className="font-headline-md text-3xl font-bold text-primary dark:text-white">
+          <h1 className="font-headline-md text-3xl font-bold text-[#0A192F] dark:text-white">
             {activeView === 'installments' ? 'Parcelamentos' : 'Histórico'}
           </h1>
         </div>
@@ -141,7 +141,7 @@ const Expenses: React.FC = () => {
             onClick={() => setActiveView('list')}
             className={cn(
               "px-4 py-2 rounded-lg text-xs font-bold transition-all",
-              activeView === 'list' ? "bg-primary text-white shadow-lg shadow-primary/20" : "bg-slate-100 text-slate-500 hover:bg-slate-200"
+              activeView === 'list' ? "bg-primary text-white shadow-lg shadow-primary/20" : "bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700"
             )}
           >
             LISTA
@@ -150,7 +150,7 @@ const Expenses: React.FC = () => {
             onClick={() => setActiveView('installments')}
             className={cn(
               "px-4 py-2 rounded-lg text-xs font-bold transition-all",
-              activeView === 'installments' ? "bg-primary text-white shadow-lg shadow-primary/20" : "bg-slate-100 text-slate-500 hover:bg-slate-200"
+              activeView === 'installments' ? "bg-primary text-white shadow-lg shadow-primary/20" : "bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700"
             )}
           >
             ATIVOS
@@ -177,7 +177,7 @@ const Expenses: React.FC = () => {
             >
               <div className="flex justify-between items-center">
                 <h3 className="text-2xl font-black text-primary dark:text-white">Nova Despesa</h3>
-                <button onClick={() => setShowAddModal(false)} className="p-2 bg-slate-50 dark:bg-slate-800 rounded-full text-slate-400">
+                <button onClick={() => setShowAddModal(false)} className="p-2 bg-slate-50 dark:bg-slate-800 rounded-full text-slate-400 dark:text-slate-500">
                   <X className="w-6 h-6" />
                 </button>
               </div>
@@ -346,9 +346,9 @@ const Expenses: React.FC = () => {
                   );
                 })
               ) : (
-                <div className="text-center py-20 bg-slate-50 rounded-3xl border border-dashed border-slate-200">
-                  <p className="text-slate-400 font-bold">Nenhum parcelamento ativo</p>
-                  <p className="text-[10px] text-slate-300 font-bold uppercase mt-1">Crie um novo lançamento marcando "Compra Parcelada"</p>
+                <div className="text-center py-20 bg-slate-50 dark:bg-slate-800/50 rounded-3xl border border-dashed border-slate-200 dark:border-slate-700">
+                  <p className="text-slate-400 dark:text-slate-500 font-bold">Nenhum parcelamento ativo</p>
+                  <p className="text-[10px] text-slate-300 dark:text-slate-600 font-bold uppercase mt-1">Crie um novo lançamento marcando "Compra Parcelada"</p>
                 </div>
               )}
             </div>
@@ -390,12 +390,12 @@ const Expenses: React.FC = () => {
               })
             ) : (
               <div className="flex flex-col items-center justify-center py-20 text-center space-y-4">
-                <div className="w-20 h-20 rounded-full bg-slate-50 flex items-center justify-center text-slate-200">
+                <div className="w-20 h-20 rounded-full bg-slate-50 dark:bg-slate-800/50 flex items-center justify-center text-slate-200 dark:text-slate-700">
                   <Tag className="w-10 h-10" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-slate-400">Nenhum gasto registrado</h3>
-                  <p className="text-xs text-slate-300 px-8">Comece a controlar o orçamento familiar adicionando sua primeira despesa.</p>
+                  <h3 className="font-bold text-slate-400 dark:text-slate-500">Nenhum gasto registrado</h3>
+                  <p className="text-xs text-slate-300 dark:text-slate-600 px-8">Comece a controlar o orçamento familiar adicionando sua primeira despesa.</p>
                 </div>
               </div>
             )}

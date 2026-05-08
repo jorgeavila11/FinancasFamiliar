@@ -81,7 +81,7 @@ const Insights: React.FC = () => {
   return (
     <div className="space-y-10 pb-12">
       <section className="space-y-2">
-        <h1 className="font-headline-md text-3xl font-bold text-primary dark:text-white">Análises Mensais</h1>
+        <h1 className="font-headline-md text-3xl font-bold text-[#0A192F] dark:text-white">Análises Mensais</h1>
         <p className="text-on-surface-variant dark:text-slate-400 font-body-md opacity-70">Saúde financeira da sua família em tempo real.</p>
       </section>
 
